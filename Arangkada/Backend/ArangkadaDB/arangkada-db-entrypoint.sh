@@ -1,0 +1,1 @@
+/opt/mssql/bin/sqlservr & /usr/arangkada-db/sql/import-arangkada-db.sh

@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[Operator]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[FullName] NVARCHAR(100) NOT NULL,
+	[Username] NVARCHAR(100) NOT NULL,
+	[Password] NVARCHAR(100) NOT NULL,
+	[Email] NVARCHAR(100) NOT NULL,
+	[IsVerified] BIT DEFAULT 0,
+	[VerificationCode] NVARCHAR(50) NULL
+)

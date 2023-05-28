@@ -1,0 +1,45 @@
+version: "3.8"
+services:
+  sqlserver:
+    build: ./Arangkada/Backend/ArangkadaDB
+    image: sqlserver
+    container_name: arangkada-db
+    ports:
+      - 1433:1433
+    env_file:
+      - ./env/sqlserver.env
+    networks:
+      - arangkada-network
+
+  backend:
+    build: ./Arangkada/Backend/ArangkadaAPI
+    image: arangkada-api
+    container_name: arangkada-api
+    ports:
+      - 5000:80
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - sqlserver
+    networks:
+      - arangkada-network
+
+  frontend:
+    build: ./Arangkada/Frontend
+    image: arangkada-app
+    container_name: arangkada-app
+    ports:
+      - 3000:3000
+    env_file:
+      - ./env/frontend.env
+    volumes:
+      - ./Arangkada/Frontend/src:/app/src
+      - ./Arangkada/Frontend/node_modules:/app/node_modules
+      - ./Arangkada/Frontend/build:/app/build
+    depends_on:
+      - backend
+    stdin_open: true
+
+networks:
+  arangkada-network:
+    driver: bridge
