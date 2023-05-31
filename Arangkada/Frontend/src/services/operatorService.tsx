@@ -10,11 +10,6 @@ export const operatorService = {
       return response.data;
     },
 
-    getAllOperators: async (): Promise<Operator[]> => {
-      const response = await axios.get<Operator[]>(operatorsURL);
-      return response.data;
-    },
-
     getOperatorById: async (id: string): Promise<Operator> => {
       const response = await axios.get<Operator>(`${operatorsURL}/${id}`);
       return response.data;
@@ -22,11 +17,6 @@ export const operatorService = {
 
     getOperatorByUserName: async (userName: string): Promise<Operator> => {
       const response = await axios.get<Operator>(`${operatorsURL}/un/${userName}`);
-      return response.data;
-    },
-
-    getOperatorByFullName: async (fullName: string): Promise<Operator> => {
-      const response = await axios.get<Operator>(`${operatorsURL}/fn/${fullName}`);
       return response.data;
     },
 
