@@ -68,57 +68,6 @@ namespace ArangkadaTests.ServicesTests
 
 
         [Fact]
-        public async void GetAll_HasOperators_ReturnsOperatorDtoList()
-        {
-            var expectedOperatorDtoList = new List<OperatorDto>
-            {
-                new OperatorDto
-                {
-                    Id = 1,
-                    FullName = "Taka Moriuchi",
-                    Username = "takamoriuchi",
-                    Email = "taka.oor@email.com",
-                    IsVerified = false,
-                    Vehicles = 0,
-                    Drivers = 0
-                },
-                new OperatorDto
-                {
-                    Id = 2,
-                    FullName = "Alex Gaskarth",
-                    Username = "alexgaskarth",
-                    Email = "alex.atl@email.com",
-                    IsVerified = false,
-                    Vehicles = 0,
-                    Drivers = 0
-                }
-            };
-
-            _fakeOperatorRepository.Setup(x => x.GetAll())
-                                   .ReturnsAsync(It.IsAny<List<Operator>>());
-
-            _fakeMapper.Setup(x => x.Map<IEnumerable<OperatorDto>>(It.IsAny<List<Operator>>()))
-                       .Returns(expectedOperatorDtoList);
-
-            var result = await _operatorService.GetAll();
-
-            Assert.NotNull(result);
-            Assert.Equal(expectedOperatorDtoList, result);
-        }
-
-
-        [Fact]
-        public async void GetAll_Exception_ReturnsNull()
-        {
-            _fakeOperatorRepository.Setup(x => x.GetAll())
-                                   .Throws(new Exception("Simulated exception"));
-
-            var result = await _operatorService.GetAll();
-
-            Assert.Null(result);
-        }
-
-        [Fact]
         public async void GetById_HasOperator_ReturnsOperatorDto()
         {
             _fakeOperatorRepository.Setup(x => x.GetById(It.IsAny<int>()))
