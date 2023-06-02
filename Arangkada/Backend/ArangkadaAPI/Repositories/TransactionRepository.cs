@@ -34,19 +34,6 @@ namespace ArangkadaAPI.Repositories
             }
         }
 
-        public async Task<IEnumerable<Transaction>> GetAll()
-        {
-            var sql = "SELECT t.*, o.FullName AS OperatorName, d.FullName AS DriverName " +
-                      "FROM [dbo].[Transaction] t " +
-                      "JOIN Operator o ON t.OperatorId = o.Id " +
-                      "JOIN Driver d ON t.DriverId = d.Id;";
-
-            using (var con = _context.CreateConnection())
-            {
-                return await con.QueryAsync<Transaction>(sql);
-            }
-        }
-
         public async Task<IEnumerable<Transaction>> GetAllByOperatorId(int operatorId)
         {
             var sql = "SELECT t.*, o.FullName AS OperatorName, d.FullName AS DriverName " +
@@ -58,20 +45,6 @@ namespace ArangkadaAPI.Repositories
             using (var con = _context.CreateConnection())
             {
                 return await con.QueryAsync<Transaction>(sql, new { OperatorId = operatorId });
-            }
-        }
-
-        public async Task<IEnumerable<Transaction>> GetAllByDriverId(int driverId)
-        {
-            var sql = "SELECT t.*, o.FullName AS OperatorName, d.FullName AS DriverName " +
-                      "FROM [dbo].[Transaction] t " +
-                      "JOIN Operator o ON t.OperatorId = o.Id " +
-                      "JOIN Driver d ON t.DriverId = d.Id " +
-                      "WHERE d.Id = @DriverId";
-
-            using (var con = _context.CreateConnection())
-            {
-                return await con.QueryAsync<Transaction>(sql, new { DriverId = driverId });
             }
         }
 

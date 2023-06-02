@@ -45,19 +45,6 @@ namespace ArangkadaAPI.Repositories
             }
         }
 
-        public async Task<IEnumerable<Operator>> GetAll()
-        {
-            var sql = "SELECT o.*, " +
-                      "(SELECT COUNT(*) FROM Vehicle v WHERE v.OperatorId = o.Id) AS Vehicles, " +
-                      "(SELECT COUNT(*) FROM Driver d WHERE d.OperatorId = o.Id) AS Drivers " +
-                      "FROM Operator o;";
-
-            using (var con = _context.CreateConnection())
-            {
-                return await con.QueryAsync<Operator>(sql);
-            }
-        }
-
         public async Task<Operator> GetById(int id)
         {
             var sql = "SELECT o.*, " +

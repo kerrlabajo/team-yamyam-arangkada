@@ -5,7 +5,6 @@ namespace ArangkadaAPI.Repositories
     public interface IOperatorRepository
     {
         Task<int> CreateOperator(Operator op);
-        Task<IEnumerable<Operator>> GetAll();
         Task<Operator> GetById(int id);
         Task<Operator> GetByFullName(string? fullName);
         Task<Operator> GetByUsername(string? username);

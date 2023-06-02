@@ -5,7 +5,6 @@ namespace ArangkadaAPI.Repositories
     public interface IVehicleRepository
     {
         Task<int> AddVehicle(Vehicle vehicle);
-        Task<IEnumerable<Vehicle>> GetAll();
         Task<IEnumerable<Vehicle>> GetAllByOperatorId(int operatorId);
         Task<Vehicle> GetById(int id);
         Task<Vehicle> GetByPlateNumber(string? plateNumber);
