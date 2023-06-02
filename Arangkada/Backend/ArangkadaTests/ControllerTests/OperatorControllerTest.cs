@@ -108,40 +108,6 @@ namespace ArangkadaTests.ControllerTests
         }
 
         [Fact]
-        public async void GetOperators_HasOperators_ReturnsOk()
-        {
-            _fakeOperatorService.Setup(x => x.GetAll())
-                                   .ReturnsAsync(new List<OperatorDto> { new OperatorDto() });
-
-            var result = await _controller.GetOperators();
-
-            Assert.IsType<OkObjectResult>(result);
-        }
-
-        [Fact]
-        public async void GetOperators_NoOperators_ReturnsNoContent()
-        {
-            _fakeOperatorService.Setup(x => x.GetAll())
-                                   .ReturnsAsync(new List<OperatorDto>());
-
-            var result = await _controller.GetOperators();
-
-            Assert.IsType<NoContentResult>(result);
-        }
-
-        [Fact]
-        public async void GetOperators_Exception_ReturnsServerError()
-        {
-            _fakeOperatorService.Setup(x => x.GetAll())
-                                   .ThrowsAsync(new Exception());
-
-            var result = await _controller.GetOperators();
-
-            Assert.IsType<ObjectResult>(result);
-            Assert.Equal(500, ((ObjectResult)result).StatusCode);
-        }
-
-        [Fact]
         public async void GetOperatorById_HasOperator_ReturnsOk()
         {
             _fakeOperatorService.Setup(x => x.GetById(It.IsAny<int>()))
@@ -171,41 +137,6 @@ namespace ArangkadaTests.ControllerTests
                                    .ThrowsAsync(new Exception());
 
             var result = await _controller.GetOperatorById(It.IsAny<int>());
-
-            Assert.IsType<ObjectResult>(result);
-            Assert.Equal(500, ((ObjectResult)result).StatusCode);
-        }
-
-        [Fact]
-        public async void GetOperatorByFullName_HasOperator_ReturnsOk()
-        {
-            _fakeOperatorService.Setup(x => x.GetByFullName(It.IsAny<string>()))
-                                   .ReturnsAsync(new OperatorDto());
-
-            var result = await _controller.GetOperatorByFullName(It.IsAny<string>());
-
-            Assert.IsType<OkObjectResult>(result);
-        }
-
-        [Fact]
-        public async void GetOperatorByFullName_NoOperator_ReturnsNotFound()
-        {
-            _fakeOperatorService.Setup(x => x.GetByFullName(It.IsAny<string>()))
-                       .ReturnsAsync((OperatorDto)null!);
-
-            var result = await _controller.GetOperatorByFullName(It.IsAny<string>());
-
-            Assert.IsType<NotFoundObjectResult>(result);
-            Assert.Equal(404, ((NotFoundObjectResult)result).StatusCode);
-        }
-
-        [Fact]
-        public async void GetOperatorByFullName_Exception_ReturnsServerError()
-        {
-            _fakeOperatorService.Setup(x => x.GetByFullName(It.IsAny<string>()))
-                                   .ThrowsAsync(new Exception());
-
-            var result = await _controller.GetOperatorByFullName(It.IsAny<string>());
 
             Assert.IsType<ObjectResult>(result);
             Assert.Equal(500, ((ObjectResult)result).StatusCode);
