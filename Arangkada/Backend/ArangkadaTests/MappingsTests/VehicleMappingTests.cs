@@ -66,8 +66,7 @@ namespace ArangkadaTests.MappingsTests
                 PlateNumber = "PlateNumber",
                 BodyType = "BodyType",
                 Make = "Make",
-                RentFee = 500,
-                RentStatus = true
+                RentFee = 500
             };
 
             var vehicle = _mapper.Map<Vehicle>(vehicleCreationDto);
@@ -78,7 +77,6 @@ namespace ArangkadaTests.MappingsTests
             Assert.Equal(vehicleCreationDto.BodyType, vehicle.BodyType);
             Assert.Equal(vehicleCreationDto.Make, vehicle.Make);
             Assert.Equal(vehicleCreationDto.RentFee, vehicle.RentFee);
-            Assert.Equal(vehicleCreationDto.RentStatus, vehicle.RentStatus);
         }
 
     }

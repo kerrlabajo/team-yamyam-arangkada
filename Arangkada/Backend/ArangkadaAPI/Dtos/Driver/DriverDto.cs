@@ -4,7 +4,25 @@
     {
         public int Id { get; set; }
         public string? OperatorName { get; set; }
-        public string? VehicleAssigned { get; set; } = null;
+        private string? _vehicleAssigned;
+        public string? VehicleAssigned
+        {
+            get
+            {
+                return _vehicleAssigned;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    _vehicleAssigned = "Not Currently Renting";
+                }
+                else
+                {
+                    _vehicleAssigned = value;
+                }
+            }
+        }
         public string? FullName { get; set; }
         public string? Address { get; set; }
         public string? ContactNumber { get; set; }

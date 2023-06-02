@@ -49,8 +49,7 @@ namespace ArangkadaTests.ServicesTests
                 PlateNumber = "PlateNumber",
                 BodyType = "BodyType",
                 Make = "Make",
-                RentFee = 500,
-                RentStatus = true
+                RentFee = 500
             };
 
             _fakeVehicleRepository.Setup(x => x.AddVehicle(It.IsAny<Vehicle>()))

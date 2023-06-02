@@ -12,7 +12,8 @@ namespace ArangkadaAPI.Mappings
         {
             CreateMap<Vehicle, VehicleDto>();
             CreateMap<VehicleCreationDto, Vehicle>()
-              .ForMember(dest => dest.Id, opt => opt.Ignore());
+              .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.RentStatus, opt => opt.Ignore());
         }
     }
 }
