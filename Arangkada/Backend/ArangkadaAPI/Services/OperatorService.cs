@@ -45,19 +45,6 @@ namespace ArangkadaAPI.Services
             }
         }
 
-        public async Task<IEnumerable<OperatorDto>?> GetAll()
-        {
-            try
-            {
-                var OperatorModel = await _repository.GetAll();
-                return _mapper.Map<IEnumerable<OperatorDto>>(OperatorModel);
-            } catch(Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                return null;
-            }
-        }
-
         public async Task<OperatorDto?> GetById(int id)
         {
             try

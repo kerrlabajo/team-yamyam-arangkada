@@ -34,45 +34,11 @@ namespace ArangkadaAPI.Services
 
         }
 
-        public async Task<IEnumerable<TransactionDto>?> GetAll()
-        {
-            try
-            {
-                var transacModels = await _repository.GetAll();
-                return _mapper.Map<IEnumerable<TransactionDto>>(transacModels);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                return null;
-            }
-        }
-
         public async Task<IEnumerable<TransactionDto>?> GetAllByOperatorId(int operatorId)
         {
             try
             {
                 var transacModels = await _repository.GetAllByOperatorId(operatorId);
-
-                if (transacModels == null)
-                {
-                    return null;
-                }
-
-                return _mapper.Map<IEnumerable<TransactionDto>>(transacModels);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                return null;
-            }
-        }
-
-        public async Task<IEnumerable<TransactionDto>?> GetAllByDriverId(int driverId)
-        {
-            try
-            {
-                var transacModels = await _repository.GetAllByDriverId(driverId);
 
                 if (transacModels == null)
                 {

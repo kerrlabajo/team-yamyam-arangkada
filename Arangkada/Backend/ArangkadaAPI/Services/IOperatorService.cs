@@ -17,12 +17,6 @@ namespace ArangkadaAPI.Services
         Task<OperatorDto?> CreateOperator(OperatorCreationDto OperatorToCreate);
 
         /// <summary>
-        /// Retrieves all operators.
-        /// </summary>
-        /// <returns>A collection of operator DTOs, or null if no operators exist.</returns>
-        Task<IEnumerable<OperatorDto>?> GetAll();
-
-        /// <summary>
         /// Retrieves an operator by ID.
         /// </summary>
         /// <param name="id">The ID of the operator.</param>

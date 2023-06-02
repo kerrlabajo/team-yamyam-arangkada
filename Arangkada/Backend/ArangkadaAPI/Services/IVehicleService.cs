@@ -13,11 +13,7 @@ namespace ArangkadaAPI.Services
         /// <param name="vehicleToAdd">The vehicle to be added</param>
         /// <returns>Newly added Vehicle, null if invalid</returns>
         Task<VehicleDto?> AddVehicle(VehicleCreationDto vehicleToAdd);
-        /// <summary>
-        /// Retrieves all currently registered vehicles in the system
-        /// </summary>
-        /// <returns>A list of Vehicles</returns>
-        Task<IEnumerable<VehicleDto>?> GetAll();
+
         /// <summary>
         /// Retrieves all currently registered vehicles whose operatorId is equal to the parameter
         /// </summary>
