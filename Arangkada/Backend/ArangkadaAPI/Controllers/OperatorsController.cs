@@ -73,52 +73,6 @@ namespace ArangkadaAPI.Controllers
         }
 
         /// <summary>
-        /// Retrieves all operators in the system.
-        /// </summary>
-        /// <remarks>
-        /// Sample request:
-        /// 
-        ///     GET /api/operators
-        ///     {
-        ///         "id":       "1",
-        ///         "fullName": "John Doe",
-        ///         "username": "johndoe",
-        ///         "email": "johndoe@example.com"
-        ///     },
-        ///     {
-        ///         "id":       "2",
-        ///         "fullName": "Juan Cruz",
-        ///         "username": "juancruz",
-        ///         "email": "juancruz@example.com"
-        ///     }
-        /// </remarks>
-        /// <returns>An array of operator objects.</returns>
-        /// <response code="200">Returns an array of operator objects.</response>
-        /// <response code="500">If there was an internal server error.</response>
-        [HttpGet(Name = "GetOperators")]
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<OperatorDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetOperators()
-        {
-            try
-            {
-                var operators = await _service.GetAll();
-                if (operators.IsNullOrEmpty())
-                {
-                    return NoContent();
-                }
-                return Ok(operators);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Something went wrong in the {nameof(GetOperators)}");
-                return StatusCode(500, "Internal server error. Please try again later.");
-            }
-        }
-
-        /// <summary>
         /// Retrieves an operator by ID.
         /// </summary>
         /// <remarks>
@@ -198,48 +152,6 @@ namespace ArangkadaAPI.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Something went wrong in the {nameof(GetOperatorByUsername)}");
-                return StatusCode(500, "Internal server error. Please try again later.");
-            }
-        }
-
-        /// <summary>
-        /// Retrieves an operator by full name.
-        /// </summary>
-        /// <remarks>
-        /// Sample request:
-        /// 
-        ///     GET /api/operators/by/fn/{John%20Doe}
-        ///     {
-        ///         "id":       "1",
-        ///         "fullName": "John Doe",
-        ///         "username": "johndoe",
-        ///         "email": "johndoe@example.com"
-        ///     }
-        /// </remarks>
-        /// <param name="fullName">The full name of the operator to retrieve.</param>
-        /// <returns>The operator object, or null if the operator does not exist.</returns>
-        /// <response code="200">Returns the operator object.</response>
-        /// <response code="404">If the operator with the specified full name does not exist.</response>
-        /// <response code="500">If there was an internal server error.</response>
-        [HttpGet("fn/{fullName}", Name = "GetOperatorByFullName")]
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(OperatorDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetOperatorByFullName(string fullName)
-        {
-            try
-            {
-                var Operator = await _service.GetByFullName(fullName);
-                if (Operator == null)
-                {
-                    return NotFound($"Operator with name: {fullName} does not exist.");
-                }
-                return Ok(Operator);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Something went wrong in the {nameof(GetOperatorByFullName)}");
                 return StatusCode(500, "Internal server error. Please try again later.");
             }
         }

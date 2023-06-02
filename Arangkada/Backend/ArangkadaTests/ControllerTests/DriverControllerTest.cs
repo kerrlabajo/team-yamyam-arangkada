@@ -146,52 +146,6 @@ namespace ArangkadaTests.ControllerTests
             Assert.Equal(500, ((ObjectResult)result).StatusCode);
         }
 
-        //GetDrivers(200)
-        [Fact]
-        public async void GetDrivers_HasDrivers_ReturnsOk()
-        {
-            //Arrange
-            _fakeDriverService.Setup(service => service.GetAll())
-                              .ReturnsAsync(new List<DriverDto> { new DriverDto() });
-
-            //Act
-            var result = await _controller.GetDrivers();
-
-            //Assert
-            Assert.IsType<OkObjectResult>(result);
-        }
-
-        //GetDrivers(204)
-        [Fact]
-        public async void GetDrivers_NoDrivers_ReturnsNoContent()
-        {
-            //Arrange
-            _fakeDriverService.Setup(service => service.GetAll())
-                              .ReturnsAsync(new List<DriverDto>());
-
-            //Act
-            var result = await _controller.GetDrivers();
-
-            //Assert
-            Assert.IsType<NoContentResult>(result);
-        }
-
-        //GetDrivers(500)
-        [Fact]
-        public async void GetDrivers_Exception_ReturnsServerError()
-        {
-            //Arrange
-            _fakeDriverService.Setup(service => service.GetAll())
-                              .ThrowsAsync(new Exception());
-
-            //Act
-            var result = await _controller.GetDrivers();
-
-            //Assert
-            Assert.IsType<ObjectResult>(result);
-            Assert.Equal(500, ((ObjectResult)result).StatusCode);
-        }
-
         //GetDriversByOperatorId(200)
         [Fact]
         public async void GetDriversByOperatorId_HasOperator_ReturnsOk()
@@ -283,53 +237,6 @@ namespace ArangkadaTests.ControllerTests
 
             //Act
             var result = await _controller.GetDriverById(driverId);
-
-            //Assert
-            Assert.IsType<ObjectResult>(result);
-            Assert.Equal(500, ((ObjectResult)result).StatusCode);
-        }
-
-        //GetDriverByFullName(200)
-        [Fact]
-        public async void GetDriverByFullName_HasDriver_ReturnsOk()
-        {
-            //Arrange
-            var fullName = "John William";
-            _fakeDriverService.Setup(service => service.GetByFullName(fullName))
-                              .ReturnsAsync(new DriverDto());
-
-            //Act
-            var result = await _controller.GetDriverByFullName(fullName);
-
-            //Assert
-            Assert.IsType<OkObjectResult>(result);
-        }
-
-        //GetDriverByFullName(404)
-        [Fact]
-        public async void GetDriverByFullName_NoDriver_ReturnsNotFound()
-        {
-            //Arrange
-            _fakeDriverService.Setup(x => x.GetByFullName(It.IsAny<string>()))
-                                   .ReturnsAsync((DriverDto)null!);
-            //Act
-            var result = await _controller.GetDriverByFullName(It.IsAny<string>());
-            //Assert
-            Assert.IsType<NotFoundObjectResult>(result);
-            Assert.Equal(404, ((NotFoundObjectResult)result).StatusCode);
-        }
-
-        //GetDriverByFullName(500)
-        [Fact]
-        public async void GetDriverByFullName_Exception_ReturnsServerError()
-        {
-            //Arrange
-            var fullName = "John William";
-            _fakeDriverService.Setup(service => service.GetByFullName(fullName))
-                              .ThrowsAsync(new Exception());
-
-            //Act
-            var result = await _controller.GetDriverByFullName(fullName);
 
             //Assert
             Assert.IsType<ObjectResult>(result);

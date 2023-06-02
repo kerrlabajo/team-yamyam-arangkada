@@ -18,15 +18,6 @@ namespace ArangkadaAPI.Services
         Task<TransactionDto?> CreateTransaction(TransactionCreationDto transactionToCreate);
 
         /// <summary>
-        /// Retrieves all transactions.
-        /// </summary>
-        /// <returns>
-        /// A list of transaction Dto if retrieval successful.
-        /// Null if no transactions exist.
-        /// </returns>
-        Task<IEnumerable<TransactionDto>?> GetAll();
-
-        /// <summary>
         /// Retrieves all transactions by operator ID.
         /// </summary>
         /// <param name="operatorId">Id of the operator to find in transactions</param>
@@ -35,16 +26,6 @@ namespace ArangkadaAPI.Services
         /// Null if no transactions exist with the given Operator.
         /// </returns>
         Task<IEnumerable<TransactionDto>?> GetAllByOperatorId(int operatorId);
-
-        /// <summary>
-        /// Retrieves all transactions by driver ID.
-        /// </summary>
-        /// <param name="driverId">Id of the driver to find in transactions</param>
-        /// <returns>
-        /// A list of transaction Dto with the same Driver if retrieval successful.
-        /// Null if no transactions exist with the given Driver.
-        /// </returns>
-        Task<IEnumerable<TransactionDto>?> GetAllByDriverId(int driverId);
 
         /// <summary>
         /// Retrieves transaction by ID

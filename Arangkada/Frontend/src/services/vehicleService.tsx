@@ -10,11 +10,6 @@ export const vehicleService = {
       return response.data;
     },
 
-    getAllVehicles: async (): Promise<Vehicle[]> => {
-      const response = await axios.get<Vehicle[]>(vehiclesURL);
-      return response.data;
-    },
-
     getVehiclesByOperator: async (operatorId: string): Promise<Vehicle[]> => {
       const response = await axios.get<Vehicle[]>(`${vehiclesURL}/by/op/${operatorId}`);
       return response.data;
@@ -22,11 +17,6 @@ export const vehicleService = {
 
     getVehicleById: async (id: string): Promise<Vehicle> => {
       const response = await axios.get<Vehicle>(`${vehiclesURL}/${id}`);
-      return response.data;
-    },
-
-    getVehicleByPlateNumber: async (plateNumber: string): Promise<Vehicle> => {
-      const response = await axios.get<Vehicle>(`${vehiclesURL}/pn/${plateNumber}`);
       return response.data;
     },
 

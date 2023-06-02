@@ -15,12 +15,6 @@ namespace ArangkadaAPI.Services
         Task<DriverDto?> CreateDriver(DriverCreationDto DrivertoCreate);
 
         /// <summary>
-        /// Retrieves all drivers.
-        /// </summary>
-        /// <returns>A collection of driver DTOs, or null if no operators exist.</returns>
-        Task<IEnumerable<DriverDto>?> GetAll();
-
-        /// <summary>
         /// Retrieves all drivers by Operator Id.
         /// </summary>
         /// <param name="operatorId">The driver data that need to get</param>

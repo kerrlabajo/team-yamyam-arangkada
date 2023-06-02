@@ -57,49 +57,6 @@ namespace ArangkadaTests.ServicesTests
         }
 
         [Fact]
-        public async void GetAll_HasTransactions_ReturnsTransactionDtoList()
-        {
-            var expectedTransactionDtoList = new List<TransactionDto>
-            {
-                new TransactionDto
-                {
-                    Id = 1,
-                    OperatorName = "Operator 1",
-                    DriverName = "John Smith",
-                    Amount = 1000,
-                    Date = "2023-05-10"
-                },
-                new TransactionDto
-                {
-                    Id = 2,
-                    OperatorName = "Operator 2",
-                    DriverName = "John Doe",
-                    Amount = 2000,
-                    Date = "2023-05-11"
-                }
-            };
-
-            _fakeTransactionRepository.Setup(r => r.GetAll()).ReturnsAsync(It.IsAny<List<Transaction>>());
-            _fakeMapper.Setup(m => m.Map<IEnumerable<TransactionDto>>(It.IsAny<List<Transaction>>()))
-                       .Returns(expectedTransactionDtoList);
-
-            var result = await _transactionService.GetAll();
-
-            Assert.NotNull(result);
-            Assert.Equal(expectedTransactionDtoList, result);
-        }
-
-        [Fact]
-        public async void GetAll_Exception_ReturnsNull()
-        {
-            _fakeTransactionRepository.Setup(r => r.GetAll()).ThrowsAsync(new Exception("Test exception"));
-
-            var result = await _transactionService.GetAll();
-
-            Assert.Null(result);
-        }
-
-        [Fact]
         public async void GetAllByOperatorId_HasOperatorId_ReturnsTransactionDtoList()
         { 
             var transactionModelList = new List<Transaction>
@@ -160,71 +117,6 @@ namespace ArangkadaTests.ServicesTests
             _fakeTransactionRepository.Setup(r => r.GetAllByOperatorId(It.IsAny<int>())).ThrowsAsync(new Exception("Test exception"));
 
             var result = await _transactionService.GetAllByOperatorId(It.IsAny<int>());
-
-            Assert.Null(result);
-        }
-
-        [Fact]
-        public async void GetAllByDriverID_HasTransactions_ReturnsTransactionDtoList()
-        {
-            var transactionModelList = new List<Transaction>
-            {
-                new Transaction
-                {
-                    Id = 1,
-                    OperatorName = "Operator 1",
-                    DriverName = "John Smith",
-                    Amount = 1000,
-                    Date = "2023-05-10"
-                },
-                new Transaction
-                {
-                    Id = 1,
-                    OperatorName = "Operator 1",
-                    DriverName = "John Doe",
-                    Amount = 2000,
-                    Date = "2023-05-11"
-                }
-            };
-
-            var expectedTransactionDtoList = new List<TransactionDto>
-            {
-                new TransactionDto
-                {
-                    Id = 1,
-                    OperatorName = "Operator 1",
-                    DriverName = "John Smith",
-                    Amount = 1000,
-                    Date = "2023-05-10"
-                },
-                new TransactionDto
-                {
-                    Id = 1,
-                    OperatorName = "Operator 2",
-                    DriverName = "John Smith",
-                    Amount = 2000,
-                    Date = "2023-05-11"
-                }
-            };
-
-            _fakeTransactionRepository.Setup(r => r.GetAllByDriverId(1))
-                                      .ReturnsAsync(transactionModelList);
-
-            _fakeMapper.Setup(m => m.Map<IEnumerable<TransactionDto>>(transactionModelList))
-                       .Returns(expectedTransactionDtoList);
-
-            var result = await _transactionService.GetAllByDriverId(1);
-
-            Assert.NotNull(result);
-            Assert.Equal(expectedTransactionDtoList, result);
-        }
-
-        [Fact]
-        public async void GetAllByDriverID_Exception_ReturnsNull()
-        {
-            _fakeTransactionRepository.Setup(r => r.GetAllByDriverId(It.IsAny<int>())).ThrowsAsync(new Exception("Test exception"));
-
-            var result = await _transactionService.GetAllByDriverId(It.IsAny<int>());
 
             Assert.Null(result);
         }

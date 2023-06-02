@@ -80,62 +80,6 @@ namespace ArangkadaAPI.Controllers
         }
 
         /// <summary>
-        /// Retrieves all vehicles currently existing in the system.
-        /// </summary>
-        /// <remarks>
-        /// Sample request:
-        /// 
-        ///     GET api/Vehicles
-        ///     {
-        ///          "id": 1,
-        ///          "operatorName": "Operator 1",
-        ///          "crNumber": "CR0001",
-        ///          "plateNumber": "AAA1234",
-        ///          "bodyType": "Sedan",
-        ///          "make": "Toyota",
-        ///          "rentFee": 500,
-        ///          "rentStatus": true
-        ///     },
-        ///     {
-        ///          "id": 2,
-        ///          "operatorName": "Operator 2",
-        ///          "crNumber": "CR0002",
-        ///          "plateNumber": "BBB5678",
-        ///          "bodyType": "SUV",
-        ///          "make": "Honda",
-        ///          "rentFee": 1500,
-        ///          "rentStatus": false
-        ///     }
-        /// </remarks>
-        /// <returns>List of all vehicles.</returns>
-        /// <response code="200">Returns the list of all vehicles.</response>
-        /// <response code="204">If no vehicle was found.</response>
-        /// <response code="500">If there was an internal server error.</response>
-        [HttpGet(Name = "GetVehicles")]
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<VehicleDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetVehicles()
-        {
-            try
-            {
-                var vehicles = await _vehicleService.GetAll();
-
-                if (vehicles.IsNullOrEmpty())
-                {
-                    return NoContent();
-                }
-
-                return Ok(vehicles);
-            } catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Something went wrong in the {nameof(GetVehicles)}");
-                return StatusCode(500, "Internal server error. Please try again later.");
-            }
-        }
-
-        /// <summary>
         /// Retrieves all vehicles with matching operator id.
         /// </summary>
         /// <remarks>
@@ -234,51 +178,6 @@ namespace ArangkadaAPI.Controllers
             }catch (Exception ex)
             {
                 _logger.LogError(ex, $"Something went wrong in the {nameof(GetVehicleById)}");
-                return StatusCode(500, "Internal server error. Please try again later.");
-            }
-        }
-
-        /// <summary>
-        /// Retrieves all vehicles with matching plate number.
-        /// </summary>
-        /// <remarks>
-        /// Sample request:
-        /// 
-        ///     GET api/Vehicles/pn/AAA1234
-        ///     {
-        ///          "id": 1,
-        ///          "operatorName": "Operator 1",
-        ///          "crNumber": "CR0001",
-        ///          "plateNumber": "AAA1234",
-        ///          "bodyType": "Sedan",
-        ///          "make": "Toyota",
-        ///          "rentFee": 500,
-        ///          "rentStatus": true
-        ///     }
-        /// </remarks>
-        /// <returns>A vehicle with matching plate number.</returns>
-        /// <response code="200">Returns a vehicle with matching plate number</response>
-        /// <response code="404">If no vehicles with matching plate number was found.</response>
-        /// <response code="500">If there was an internal server error.</response>
-        [HttpGet("pn/{plateNumber}", Name = "GetVehicleByPlateNumber")]
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(VehicleDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetVehicleByPlateNumber(string plateNumber)
-        {
-            try
-            {
-                var Vehicle = await _vehicleService.GetByPlateNumber(plateNumber);
-                if (Vehicle == null)
-                {
-                    return NotFound($"Vehicle with plate number: {plateNumber} does not exist.");
-                }
-                return Ok(Vehicle);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Something went wrong in the {nameof(GetVehicleByPlateNumber)}");
                 return StatusCode(500, "Internal server error. Please try again later.");
             }
         }

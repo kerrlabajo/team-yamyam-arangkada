@@ -77,44 +77,6 @@ namespace ArangkadaAPI.Controllers
         }
 
         /// <summary>
-        /// Retrieves all drivers from the system.
-        /// </summary>
-        /// <remarks>
-        /// Sample request:
-        ///
-        ///     GET /api/drivers
-        ///
-        /// </remarks>
-        /// <returns>A list of drivers.</returns>
-        /// <response code="200">Returns the list of drivers.</response>
-        /// <response code="204">If no drivers were found.</response>
-        /// <response code="500">If there was an internal server error.</response>
-        [HttpGet(Name = "GetDrivers")]
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<DriverDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetDrivers()
-        {
-            try
-            {
-                var drivers = await _driverService.GetAll();
-
-                if (drivers.IsNullOrEmpty())
-                {
-                    return NoContent();
-                }
-
-                return Ok(drivers);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Something went wrong in the {nameof(GetDrivers)}");
-                return StatusCode(500, "Internal server error. Please try again later.");
-            }
-        }
-
-        /// <summary>
         /// Retrieves all drivers belonging to a specific operator.
         /// </summary>
         /// <remarks>
@@ -186,29 +148,6 @@ namespace ArangkadaAPI.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Something went wrong in the {nameof(GetDriverById)}");
-                return StatusCode(500, "Internal server error. Please try again later.");
-            }
-        }
-
-        [HttpGet("fn/{fullName}", Name = "GetDriverByFullName")]
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(DriverDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetDriverByFullName(string fullName)
-        {
-            try
-            {
-                var driver = await _driverService.GetByFullName(fullName);
-                if (driver == null)
-                {
-                    return NotFound($"Driver with name: {fullName} does not exist.");
-                }
-                return Ok(driver);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Something went wrong in the {nameof(GetDriverByFullName)}");
                 return StatusCode(500, "Internal server error. Please try again later.");
             }
         }

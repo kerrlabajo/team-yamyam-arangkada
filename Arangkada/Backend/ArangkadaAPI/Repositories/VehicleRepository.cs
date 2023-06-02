@@ -36,18 +36,6 @@ namespace ArangkadaAPI.Repositories
             }
         }
 
-        public async Task<IEnumerable<Vehicle>> GetAll()
-        {
-            var sql = "SELECT v.Id, v.CRNumber, v.PlateNumber, v.BodyType, v.Make, v.RentFee, v.RentStatus, o.FullName AS OperatorName " +
-                      "FROM Vehicle v " +
-                      "INNER JOIN Operator o ON v.OperatorId = o.Id;";
-
-            using (var con = _context.CreateConnection())
-            {
-                return await con.QueryAsync<Vehicle>(sql);
-            }
-        }
-
         public async Task<IEnumerable<Vehicle>> GetAllByOperatorId(int operatorId)
         {
             var sql = "SELECT v.Id, v.CRNumber, v.PlateNumber, v.BodyType, v.Make, v.RentFee, v.RentStatus, o.FullName AS OperatorName " +

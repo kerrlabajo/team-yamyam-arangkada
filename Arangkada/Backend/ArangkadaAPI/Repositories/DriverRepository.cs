@@ -37,20 +37,6 @@ namespace ArangkadaAPI.Repositories
             }
         }
 
-
-        public async Task<IEnumerable<Driver>> GetAll()
-        {
-            string sql = "SELECT d.*, o.FullName AS OperatorName, v.PlateNumber AS VehicleAssigned " +
-             "FROM Driver d " +
-             "INNER JOIN Operator o ON d.OperatorId = o.Id " +
-             "LEFT JOIN Vehicle v ON d.VehicleId = v.Id";
-
-            using (var con = _context.CreateConnection())
-            {
-                return await con.QueryAsync<Driver>(sql);
-            }
-        }
-
         public async Task<IEnumerable<Driver>> GetAllByOperatorId(int operatorId)
         {
             string sql = "SELECT d.*, o.FullName AS OperatorName, v.PlateNumber AS VehicleAssigned " +

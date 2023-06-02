@@ -10,18 +10,8 @@ export const transactionService = {
         return response.data;
     },
 
-    getAllTransactions: async (): Promise<Transaction[]> => {
-        const response = await axios.get<Transaction[]>(transactionsURL);
-        return response.data;
-    },
-
     getTransactionsByOperator: async (operatorId: string): Promise<Transaction[]> => {
         const response = await axios.get<Transaction[]>(`${transactionsURL}/by/op/${operatorId}`);
-        return response.data;
-    },
-
-    getTransactionByDriver: async (driverId: string): Promise<Transaction[]> => {
-        const response = await axios.get<Transaction[]>(`${transactionsURL}/by/dr/${driverId}`);
         return response.data;
     },
 

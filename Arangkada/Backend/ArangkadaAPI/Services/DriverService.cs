@@ -32,19 +32,6 @@ namespace ArangkadaAPI.Services
             
         }
 
-        public async Task<IEnumerable<DriverDto>?> GetAll()
-        {
-            try
-            {
-                var driverModel = await _repository.GetAll();
-                return _mapper.Map<IEnumerable<DriverDto>>(driverModel);
-            } catch(Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                return null;
-            }
-        }
-
         public async Task<IEnumerable<DriverDto>?> GetAllByOperatorId(int operatorId)
         {
             try

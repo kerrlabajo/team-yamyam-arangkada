@@ -103,56 +103,6 @@ namespace ArangkadaAPI.Controllers
         }
 
         /// <summary>
-        /// Retrieves all transactions in the system.
-        /// </summary>
-        /// <remarks>
-        /// Sample request:
-        /// 
-        ///     GET api/Transaction
-        ///     {
-        ///         "id": 1,
-        ///         "operatorName": "Operator 1",
-        ///         "driverName": "John Smith",
-        ///         "amount": 1000,
-        ///         "date": "2023-05-01"
-        ///     },
-        ///     {
-        ///         "id": 2,
-        ///         "operatorName": "Operator 1",
-        ///         "driverName": "Jane Doe",
-        ///         "amount": 1500,
-        ///         "date": "2023-05-02"
-        ///     }
-        /// </remarks>
-        /// <returns>List of all transactions in the system.</returns>
-        /// <response code="204">No Transactions found.</response>
-        /// <response code="500">If there was an internal server error.</response>
-        [HttpGet(Name = "GetTransactions")]
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<TransactionDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetTransactions()
-        {
-            try
-            {
-                var transactions = await _transactionService.GetAll();
-
-                if (transactions.IsNullOrEmpty())
-                {
-                    return NoContent();
-                }
-
-                return Ok(transactions);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Something went wrong in the {nameof(GetTransactions)}");
-                return StatusCode(500, "Internal server error. Please try again later.");
-            }
-        }
-
-        /// <summary>
         /// Retrieves all transactions belonging to a specific operator.
         /// </summary>
         /// <remarks>
@@ -201,57 +151,6 @@ namespace ArangkadaAPI.Controllers
                 return StatusCode(500, "Internal server error. Please try again later.");
             }
         }
-
-        /// <summary>
-        /// Retrieves all transactions belonging to a specific driverId.
-        /// </summary>
-        /// <remarks>
-        /// 
-        ///     GET /api/Transactions/by/dr/{5}
-        ///     {
-        ///         "id": 2,
-        ///         "operatorName": "Operator 1",
-        ///         "driverName": "Jane Doe",
-        ///         "amount": 1500,
-        ///         "date": "2023-05-02"
-        ///     },
-        ///     {
-        ///         "id": 5,
-        ///         "operatorName": "Operator 1",
-        ///         "driverName": "Jane Doe",
-        ///         "amount": 3000,
-        ///         "date": "2023-05-05"
-        ///     }
-        /// </remarks>
-        /// <param name="driverId">The ID of the driver.</param>
-        /// <returns>List of all transactions belonging to the given driver Id in the system.</returns>
-        /// <response code="404">If no drivers were found for the specified driver ID.</response>
-        /// <response code="500">If there was an internal server error.</response>
-        [HttpGet("by/dr/{driverId}", Name = "GetTransactionsByDriverId")]
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<TransactionDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetTransactionsByDriverId(int driverId)
-        {
-            try
-            {
-                var transactions = await _transactionService.GetAllByDriverId(driverId);
-
-                if (transactions == null)
-                {
-                    return NotFound($"Transactions with driver id: {driverId} does not exist.");
-                }
-
-                return Ok(transactions);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Something went wrong in the {nameof(GetTransactionsByDriverId)}");
-                return StatusCode(500, "Internal server error. Please try again later.");
-            }
-        }
-
 
         /// <summary>
         /// Retrieves transaction by ID.

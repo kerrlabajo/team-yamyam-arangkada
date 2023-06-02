@@ -107,40 +107,6 @@ namespace ArangkadaTests.ControllerTests
         }
 
         [Fact]
-        public async void GetTransactions_HasTransactions_ReturnsOk()
-        {
-            _fakeTransactionService.Setup(x => x.GetAll())
-                                   .ReturnsAsync(new List<TransactionDto> { new TransactionDto() });
-
-            var result = await _controller.GetTransactions();
-
-            Assert.IsType<OkObjectResult>(result);
-        }
-
-        [Fact]
-        public async void GetTransactions_NoTransactions_ReturnsNoContent()
-        {
-            _fakeTransactionService.Setup(x => x.GetAll())
-                                   .ReturnsAsync(new List<TransactionDto>());
-
-            var result = await _controller.GetTransactions();
-
-            Assert.IsType<NoContentResult>(result);
-        }
-
-        [Fact]
-        public async void GetTransactions_Exception_ReturnsServerError()
-        {
-            _fakeTransactionService.Setup(x => x.GetAll())
-                                   .ThrowsAsync(new Exception());
-
-            var result = await _controller.GetTransactions();
-
-            Assert.IsType<ObjectResult>(result);
-            Assert.Equal(500, ((ObjectResult)result).StatusCode);
-        }
-
-        [Fact]
         public async void GetTransactionsByOperatorId_HasTransactions_ReturnsOk()
         {
             _fakeTransactionService.Setup(x => x.GetAllByOperatorId(It.IsAny<int>()))
@@ -169,39 +135,6 @@ namespace ArangkadaTests.ControllerTests
             _fakeTransactionService.Setup(x => x.GetAllByOperatorId(It.IsAny<int>()))
                                    .ThrowsAsync(new Exception());
             var result = await _controller.GetTransactionsByOperatorId(It.IsAny<int>());
-            Assert.IsType<ObjectResult>(result);
-            Assert.Equal(500, ((ObjectResult)result).StatusCode);
-        }
-
-        [Fact]
-        public async void GetTransactionsByDriverId_HasTransactions_ReturnsOk()
-        {
-            _fakeTransactionService.Setup(x => x.GetAllByDriverId(It.IsAny<int>()))
-                                   .ReturnsAsync(new List<TransactionDto> { new TransactionDto() });
-            var result = await _controller.GetTransactionsByDriverId(It.IsAny<int>());
-            Assert.IsType<OkObjectResult>(result);
-        }
-
-        [Fact]
-        public async void GetTransactionsByDriverId_NoDriver_ReturnsNotFound()
-        {
-            _fakeTransactionService.Setup(x => x.GetAllByDriverId(It.IsAny<int>()))
-                                   .ReturnsAsync((List<TransactionDto>)null!);
-
-            var result = await _controller.GetTransactionsByDriverId(It.IsAny<int>());
-
-            Assert.IsType<NotFoundObjectResult>(result);
-            Assert.Equal(404, ((NotFoundObjectResult)result).StatusCode);
-        }
-
-        [Fact]
-        public async void GetTransactionsByDriverId_Exception_ReturnsServerError()
-        {
-            _fakeTransactionService.Setup(x => x.GetAllByDriverId(It.IsAny<int>()))
-                                   .ThrowsAsync(new Exception());
-
-            var result = await _controller.GetTransactionsByDriverId(It.IsAny<int>());
-
             Assert.IsType<ObjectResult>(result);
             Assert.Equal(500, ((ObjectResult)result).StatusCode);
         }

@@ -10,11 +10,6 @@ export const driverService = {
       return response.data;
     },
 
-    getAllDrivers: async (): Promise<Driver[]> => {
-      const response = await axios.get<Driver[]>(driversURL);
-      return response.data;
-    },
-
     getDriversByOperator: async (operatorId: string): Promise<Driver[]> => {
       const response = await axios.get<Driver[]>(`${driversURL}/by/op/${operatorId}`);
       return response.data;
@@ -22,11 +17,6 @@ export const driverService = {
 
     getDriverById: async (id: string): Promise<Driver> => {
       const response = await axios.get<Driver>(`${driversURL}/${id}`);
-      return response.data;
-    },
-
-    getByFullName: async (fullName: string): Promise<Driver> => {
-      const response = await axios.get<Driver>(`${driversURL}/fn/${fullName}`);
       return response.data;
     },
     

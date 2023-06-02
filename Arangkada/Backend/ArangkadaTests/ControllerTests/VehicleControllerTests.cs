@@ -132,39 +132,6 @@ namespace ArangkadaTests.ControllerTests
         }
 
         [Fact]
-        public async void GetVehicles_HasVehicles_ReturnsOk()
-        {
-            _fakeVehicleService.Setup(x => x.GetAll())
-                               .ReturnsAsync(new List<VehicleDto> { new VehicleDto() });
-
-            var result = await _controller.GetVehicles();
-
-            Assert.IsType<OkObjectResult>(result);
-        }
-
-        [Fact]
-        public async void GetVehicles_NoVehicles_ReturnsNoContent()
-        {
-            _fakeVehicleService.Setup(x => x.GetAll())
-                               .ReturnsAsync(new List<VehicleDto>());
-
-            var result = await _controller.GetVehicles();
-
-            Assert.IsType<NoContentResult>(result);
-        }
-        [Fact]
-        public async void GetVehicles_Exception_ReturnsServerError()
-        {
-            _fakeVehicleService.Setup(x => x.GetAll())
-                               .ThrowsAsync(new Exception());
-
-            var result = await _controller.GetVehicles();
-
-            Assert.IsType<ObjectResult>(result);
-            Assert.Equal(500, ((ObjectResult)result).StatusCode);
-        }
-
-        [Fact]
         public async void GetVehiclesByOperatorId_HasVehicles_ReturnsOk()
         {
             _fakeVehicleService.Setup(x => x.GetAllByOperatorId(It.IsAny<int>()))
@@ -229,40 +196,6 @@ namespace ArangkadaTests.ControllerTests
                                    .ThrowsAsync(new Exception());
 
             var result = await _controller.GetVehicleById(It.IsAny<int>());
-
-            Assert.IsType<ObjectResult>(result);
-            Assert.Equal(500, ((ObjectResult)result).StatusCode);
-        }
-
-        [Fact]
-        public async void GetVehicleByPlateNumber_HasVehicle_ReturnsOk()
-        {
-            _fakeVehicleService.Setup(x => x.GetByPlateNumber(It.IsAny<string>()))
-                                   .ReturnsAsync(new VehicleDto());
-
-            var result = await _controller.GetVehicleByPlateNumber(It.IsAny<string>());
-
-            Assert.IsType<OkObjectResult>(result);
-        }
-
-        [Fact]
-        public async void GetVehicleByPlateNumber_NoVehicle_ReturnsNotFound()
-        {
-            _fakeVehicleService.Setup(x => x.GetByPlateNumber(It.IsAny<string>()))
-                                   .ReturnsAsync((VehicleDto)null!);
-
-            var result = await _controller.GetVehicleByPlateNumber(It.IsAny<string>());
-
-            Assert.IsType<NotFoundObjectResult>(result);
-            Assert.Equal(404, ((NotFoundObjectResult)result).StatusCode);
-        }
-        [Fact]
-        public async void GetVehicleByPlateNumber_Exception_ReturnsServerError()
-        {
-            _fakeVehicleService.Setup(x => x.GetByPlateNumber(It.IsAny<string>()))
-                                   .ThrowsAsync(new Exception());
-
-            var result = await _controller.GetVehicleByPlateNumber(It.IsAny<string>());
 
             Assert.IsType<ObjectResult>(result);
             Assert.Equal(500, ((ObjectResult)result).StatusCode);

@@ -32,20 +32,6 @@ namespace ArangkadaAPI.Services
             }
         }
 
-        public async Task<IEnumerable<VehicleDto>?> GetAll()
-        {
-            try
-            {
-                var vehicleModels = await _vehicleRepository.GetAll();
-                return _mapper.Map<IEnumerable<VehicleDto>>(vehicleModels);
-            }
-            catch(Exception ex) 
-            {
-                Debug.WriteLine(ex.Message);
-                return null;
-            }
-        }
-
         public async Task<IEnumerable<VehicleDto>?> GetAllByOperatorId(int operatorId)
         {
             try

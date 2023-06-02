@@ -62,58 +62,6 @@ namespace ArangkadaTests.ServicesTests
         }
 
         [Fact]
-        public async void GetAll_HasVehicles_ReturnsVehicleDtoList()
-        {           
-            var expectedVehicleDtoList = new List<VehicleDto>
-            {
-                new VehicleDto
-                {
-                   Id = 1,
-                   OperatorName = "Operator 1",
-                   CRNumber = "CRNumber",
-                   PlateNumber = "PlateNumber",
-                   BodyType = "BodyType",
-                   Make = "Make",
-                   RentFee = 500,
-                   RentStatus = true
-                },
-                new VehicleDto
-                {
-                    Id = 2,
-                    OperatorName = "Operator 2",
-                    CRNumber = "CRNumber",
-                    PlateNumber = "PlateNumber",
-                    BodyType = "BodyType",
-                    Make = "Make",
-                    RentFee = 500,
-                    RentStatus = true
-                }               
-            };
-            _fakeVehicleRepository.Setup(x => x.GetAll())
-                                   .ReturnsAsync(It.IsAny<List<Vehicle>>());
-
-            _fakeMapper.Setup(x => x.Map<IEnumerable<VehicleDto>>(It.IsAny<List<Vehicle>>()))
-                       .Returns(expectedVehicleDtoList);
-
-            var result = await _vehicleService.GetAll();
-
-            Assert.NotNull(result);
-            Assert.Equal(expectedVehicleDtoList, result);
-
-        }
-
-        [Fact]
-        public async void GetAll_Exception_ReturnsNull()
-        {          
-            _fakeVehicleRepository.Setup(x => x.GetAll())
-                                 .Throws(new Exception("Simulated Exception"));
-            
-            var result = await _vehicleService.GetAll();
-           
-            Assert.Null(result);
-        }
-
-        [Fact]
         public async void GetAllByOperatorId_HasOperator_ReturnsVehicleDtoList()
         {
             var expectedVehicleDtoList = new List<VehicleDto>
