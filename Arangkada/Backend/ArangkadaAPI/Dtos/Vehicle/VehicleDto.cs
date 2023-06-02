@@ -9,6 +9,17 @@
         public string? BodyType { get; set; }
         public string? Make { get; set; }
         public double RentFee { get; set; }
-        public bool RentStatus { get; set; }
+        private bool? _rentStatus;
+        public bool RentStatus
+        {
+            get
+            {
+                return _rentStatus ?? false;
+            }
+            set
+            {
+                _rentStatus = value;
+            }
+        }
     }
 }
