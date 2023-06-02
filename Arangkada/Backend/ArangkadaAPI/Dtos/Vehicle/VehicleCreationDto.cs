@@ -28,8 +28,5 @@ namespace ArangkadaAPI.Dtos.Vehicle
         [Required(ErrorMessage = "Rent fee is required.")]
         [Range(1, int.MaxValue, ErrorMessage = "Rent fee must be at least 1")]
         public double RentFee { get; set; }
-
-        [Required(ErrorMessage = "Rent status is required.")]
-        public bool RentStatus { get; set; }       
     }
 }

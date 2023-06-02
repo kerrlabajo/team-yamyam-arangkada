@@ -32,8 +32,7 @@ namespace ArangkadaTests.ControllerTests
                 PlateNumber = "ABC123",
                 BodyType = "Sedan",
                 Make = "Toyota",
-                RentFee = 500,
-                RentStatus = true
+                RentFee = 500
             };
 
             _fakeVehicleService.Setup(x => x.AddVehicle(vehicle))
@@ -56,8 +55,7 @@ namespace ArangkadaTests.ControllerTests
                 PlateNumber = "ABC123",
                 BodyType = "Sedan",
                 Make = "Toyota",
-                RentFee = 500,
-                RentStatus = true
+                RentFee = 500
             };
 
             var existingVehicle = new VehicleDto()
@@ -67,8 +65,7 @@ namespace ArangkadaTests.ControllerTests
                 PlateNumber = "ABC123",
                 BodyType = "Sedan",
                 Make = "Toyota",
-                RentFee = 500,
-                RentStatus = true
+                RentFee = 500
             };
 
             _fakeVehicleService.Setup(x => x.GetByPlateNumber(newVehicle.PlateNumber))
@@ -90,8 +87,7 @@ namespace ArangkadaTests.ControllerTests
                 PlateNumber = "ABC123",
                 BodyType = "Sedan",
                 Make = "Toyota",
-                RentFee = 500,
-                RentStatus = true
+                RentFee = 500
             };
             _controller.ModelState.AddModelError("OperatorName", "Required");
             _controller.ModelState.AddModelError("CRNumber", "Required");
@@ -118,8 +114,7 @@ namespace ArangkadaTests.ControllerTests
                 PlateNumber = "ABC123",
                 BodyType = "Sedan",
                 Make = "Toyota",
-                RentFee = 500,
-                RentStatus = true
+                RentFee = 500
             };
 
             _fakeVehicleService.Setup(x => x.AddVehicle(vehicle))
