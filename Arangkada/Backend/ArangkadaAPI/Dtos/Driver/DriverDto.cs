@@ -15,7 +15,7 @@
             {
                 if (value == null)
                 {
-                    _vehicleAssigned = "None";
+                    _vehicleAssigned = "Not Currently Renting";
                 }
                 else
                 {
