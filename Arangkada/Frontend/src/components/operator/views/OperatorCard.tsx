@@ -14,10 +14,10 @@ export default function OperatorCard() {
         fullName: "",
         username: "",
         email: "",
-        isVerified: false,
+        verificationStatus: false,
     })
 
-    const { fullName, username, email, isVerified} = data;
+    const { fullName, username, email, verificationStatus} = data;
     
 
     useEffect(() => {
@@ -57,7 +57,7 @@ export default function OperatorCard() {
             <div className="three">
                 <TextField id="outlined-read-only-input" name="username" value={username}  label="Username" InputProps={{readOnly: true,}} sx={{margin: 2}}/>
                 <TextField id="outlined-read-only-input" name="email" value={email} label="Email" InputProps={{readOnly: true,}} sx={{margin: 2}}/>
-                <TextField id="outlined-read-only-input" name="isVerified" value={isVerified === true ? "Verified" : "Not Verified"} label="Verification Status" InputProps={{readOnly: true,}} sx={{margin: 2}}/>
+                <TextField id="outlined-read-only-input" name="verificationStatus" value={verificationStatus === true ? "Verified" : "Not Verified"} label="Verification Status" InputProps={{readOnly: true,}} sx={{margin: 2}}/>
             </div>
             
             <Stack direction="row" justifyContent="end" paddingBottom={7}>

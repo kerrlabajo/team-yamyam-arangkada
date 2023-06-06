@@ -33,7 +33,7 @@ export default function EditOperatorForm() {
         username: "",
         password: "",
         email: "",
-        isVerified: false,
+        verificationStatus: false,
     })
 
     const { fullName, username, password, email } = data;

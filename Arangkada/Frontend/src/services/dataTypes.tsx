@@ -4,7 +4,7 @@ export type Operator = {
   username: string,
   password: string,
   email: string,
-  isVerified: boolean,
+  verificationStatus: boolean,
   verificationCode: string,
   drivers: number,
   vehicles: number,
@@ -31,6 +31,7 @@ export type Vehicle = {
   plateNumber: string,
   bodyType: string,
   make: string,
+  distinctionLabel: string,
   rentFee: number,
   rentStatus: boolean
   [key: string]: string | number | boolean;
@@ -42,17 +43,10 @@ export type PostVehicle = {
   plateNumber: string,
   bodyType: string,
   make: string,
+  distinctionLabel: string,
   rentFee: number,
   rentStatus: boolean
 }
-
-// export type PutVehicleFee = {
-//   rentFee: number
-// }
-
-// export type PutVehicleStatus = {
-//   rentStatus: boolean
-// }
 
 export type Driver = {
   id: string,
@@ -66,7 +60,6 @@ export type Driver = {
   dlCodes: string,
   [key: string]: string | number | boolean;
 };
-
 
 export type PostDriver = {
   operatorName: string,
@@ -86,10 +79,6 @@ export type PutDriver = {
   expirationDate: string,
   dlCodes: string
 }
-
-// export type PutDriverVehicle = {
-//   vehicleAssigned: string
-// }
 
 export type Transaction = {
   id: string,

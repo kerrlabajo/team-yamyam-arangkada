@@ -24,6 +24,7 @@ const AddVehicleForm = () => {
         plateNumber: "",
         bodyType: "",
         make: "",
+        distinctionLabel: "",
         rentFee: 0,
         rentStatus: false
     })
@@ -38,6 +39,7 @@ const AddVehicleForm = () => {
                 plateNumber: data.plateNumber,
                 bodyType: data.bodyType,
                 make: data.make,
+                distinctionLabel: data.distinctionLabel,
                 rentFee: data.rentFee,
                 rentStatus: data.rentStatus
             })
@@ -97,7 +99,7 @@ const AddVehicleForm = () => {
                 >
                 </TextField>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={4}>
                 <TextField
                     onChange={handleChange}
                     value={data.make} 
@@ -105,6 +107,19 @@ const AddVehicleForm = () => {
                     size="small"
                     variant="outlined"
                     name="make"
+                    required
+                    fullWidth
+                >
+                </TextField>
+            </Grid>
+            <Grid item xs={12} md={4}>
+                <TextField
+                    onChange={handleChange}
+                    value={data.distinctionLabel} 
+                    label="Distinction Label"
+                    size="small"
+                    variant="outlined"
+                    name="distinctionLabel"
                     required
                     fullWidth
                 >
