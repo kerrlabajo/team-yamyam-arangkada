@@ -29,6 +29,7 @@ namespace ArangkadaAPI.Repositories
                         vehicle.PlateNumber,
                         vehicle.BodyType,
                         vehicle.Make,
+                        vehicle.DistinctionLabel,
                         vehicle.RentFee,
                         vehicle.RentStatus,
                         OperatorId = operatorId,
@@ -38,7 +39,7 @@ namespace ArangkadaAPI.Repositories
 
         public async Task<IEnumerable<Vehicle>> GetAllByOperatorId(int operatorId)
         {
-            var sql = "SELECT v.Id, v.CRNumber, v.PlateNumber, v.BodyType, v.Make, v.RentFee, v.RentStatus, o.FullName AS OperatorName " +
+            var sql = "SELECT v.*, o.FullName AS OperatorName " +
                       "FROM Vehicle v " +
                       "INNER JOIN Operator o ON v.OperatorId = o.Id " +
                       "WHERE v.OperatorId = @OperatorId;";
@@ -51,8 +52,7 @@ namespace ArangkadaAPI.Repositories
 
         public async Task<Vehicle> GetById(int id)
         {
-            var sql = "SELECT o.FullName AS OperatorName, v.ID, v.CRNumber, v.PlateNumber," +
-                "v.BodyType, v.Make, v.RentFee, v.RentStatus " +
+            var sql = "SELECT o.FullName AS OperatorName, v.* " +
                 "FROM Vehicle v " +
                 "INNER JOIN [dbo].[Operator] o on v.OperatorId = o.ID " +
                 "WHERE v.ID = @Id";
@@ -65,7 +65,7 @@ namespace ArangkadaAPI.Repositories
 
         public async Task<Vehicle> GetByPlateNumber(string? plateNumber)
         {
-            var sql = "SELECT v.Id, o.FullName AS OperatorName, v.CRNumber, v.PlateNumber, v.BodyType, v.Make, v.RentFee, v.RentStatus " +
+            var sql = "SELECT o.FullName AS OperatorName, v.* " +
                       "FROM Vehicle v " +
                       "INNER JOIN Operator o ON v.OperatorId = o.Id " +
                       "WHERE v.PlateNumber = @PlateNumber;";

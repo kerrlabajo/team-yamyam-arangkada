@@ -8,6 +8,7 @@
         public string? PlateNumber { get; set; }
         public string? BodyType { get; set; }
         public string? Make { get; set; }
+        public string? DistinctionLabel { get; set; }
         public double RentFee { get; set; }
         private bool? _rentStatus;
         public bool RentStatus

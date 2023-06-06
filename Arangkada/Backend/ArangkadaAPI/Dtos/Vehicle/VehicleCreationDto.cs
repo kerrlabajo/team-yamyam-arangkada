@@ -25,6 +25,10 @@ namespace ArangkadaAPI.Dtos.Vehicle
         [MaxLength(100, ErrorMessage = "Maximum length for the make is 10 characters.")]
         public string? Make { get; set; }
 
+        [Required(ErrorMessage = "Distinction label is required.")]
+        [MaxLength(100, ErrorMessage = "Maximum length for the distinction label is 10 characters.")]
+        public string? DistinctionLabel { get; set; }
+
         [Required(ErrorMessage = "Rent fee is required.")]
         [Range(1, int.MaxValue, ErrorMessage = "Rent fee must be at least 1")]
         public double RentFee { get; set; }
