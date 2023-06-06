@@ -111,7 +111,7 @@ namespace ArangkadaAPI.Controllers
         /// <response code="200">Returns the list of all vehicle by operator id</response>
         /// <response code="404">If no vehicles with matching operator id was found.</response>
         /// <response code="500">If there was an internal server error.</response>
-        [HttpGet("by/op/{operatorId}", Name = "GetVehiclesByOperatorId")]
+        [HttpGet("operator/{operatorId}", Name = "GetVehiclesByOperatorId")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(IEnumerable<VehicleDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -206,13 +206,13 @@ namespace ArangkadaAPI.Controllers
         /// <response code="200">Returns a vehicle with updated rent status</response>
         /// <response code="404">If no vehicles with matching id was found.</response>
         /// <response code="500">If there was an internal server error.</response>
-        [HttpPut("{id}/status/edit", Name = "EditRentStatus")]
+        [HttpPut("{id}/rent", Name = "EditRentStatus")]
         [Consumes("application/json")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(VehicleDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> EditRentStatus(int id, bool rentStatus)
+        public async Task<IActionResult> EditRentStatus(int id, bool status)
         {
             try
             {
@@ -221,7 +221,7 @@ namespace ArangkadaAPI.Controllers
                     return NotFound($"Vehicle with id: {id} does not exist.");
                 }
 
-                var vehicle = await _vehicleService.UpdateRentStatus(id, rentStatus);
+                var vehicle = await _vehicleService.UpdateRentStatus(id, status);
 
                 return Ok(vehicle!);
             }
@@ -256,13 +256,13 @@ namespace ArangkadaAPI.Controllers
         /// <response code="200">Returns a vehicle with updated rent fee</response>
         /// <response code="404">If no vehicles with matching id was found.</response>
         /// <response code="500">If there was an internal server error.</response>
-        [HttpPut("{id}/fee/edit", Name = "EditRentFee")]
+        [HttpPut("{id}/fee", Name = "EditRentFee")]
         [Consumes("application/json")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(VehicleDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> EditRentFee(int id, double rentFee)
+        public async Task<IActionResult> EditRentFee(int id, double value)
         {
             try
             {
@@ -271,7 +271,7 @@ namespace ArangkadaAPI.Controllers
                     return NotFound($"Vehicle with id: {id} does not exist.");
                 }
 
-                var vehicle = await _vehicleService.UpdateRentFee(id, rentFee);
+                var vehicle = await _vehicleService.UpdateRentFee(id, value);
 
                 return Ok(vehicle!);
             }

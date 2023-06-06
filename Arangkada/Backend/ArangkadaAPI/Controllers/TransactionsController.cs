@@ -127,7 +127,7 @@ namespace ArangkadaAPI.Controllers
         /// <returns>List of all transactions belonging to the given operator Id in the system.</returns>
         /// <response code="404">If no transactions were found for the specified operator ID.</response>
         /// <response code="500">If there was an internal server error.</response>
-        [HttpGet("by/op/{operatorId}", Name = "GetTransactionsByOperatorId")]
+        [HttpGet("operator/{operatorId}", Name = "GetTransactionsByOperatorId")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(IEnumerable<TransactionDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

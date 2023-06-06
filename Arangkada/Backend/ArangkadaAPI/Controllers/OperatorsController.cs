@@ -133,7 +133,7 @@ namespace ArangkadaAPI.Controllers
         /// <response code="200">Returns the operator object.</response>
         /// <response code="404">If the operator with the specified username does not exist.</response>
         /// <response code="500">If there was an internal server error.</response>
-        [HttpGet("un/{username}", Name = "GetOperatorByUsername")]
+        [HttpGet("username/{username}", Name = "GetOperatorByUsername")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(OperatorDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -172,7 +172,7 @@ namespace ArangkadaAPI.Controllers
         /// <response code="200">Returns the password with the specified ID.</response>
         /// <response code="404">If the password with the specified ID does not exist.</response>
         /// <response code="500">If there was an internal server error.</response>
-        [HttpGet("{id}/p", Name = "GetPasswordById")]
+        [HttpGet("{id}/password", Name = "GetPasswordById")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -210,7 +210,7 @@ namespace ArangkadaAPI.Controllers
         /// <response code="200">Returns the operator's verification status with its ID.</response>
         /// <response code="404">If the  operator's verification status with the specified ID does not exist.</response>
         /// <response code="500">If there was an internal server error.</response>
-        [HttpGet("{id}/v", Name = "GetIsVerifiedById")]
+        [HttpGet("{id}/status", Name = "GetIsVerifiedById")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -299,18 +299,18 @@ namespace ArangkadaAPI.Controllers
         ///     }
         /// </remarks>
         /// <param name="id">The ID of the operator to update.</param>
-        /// <param name="valid">The bool value to update on the operator's verification status.</param>
+        /// <param name="status">The bool value to update on the operator's verification status.</param>
         /// <returns>The updated operator.</returns>
         /// <response code="200">Returns the updated operator.</response>
         /// <response code="404">If the operator with the specified ID does not exist.</response>
         /// <response code="500">If there was an internal server error.</response>
-        [HttpPut("{id}/email/verify", Name = "UpdateVerification")]
+        [HttpPut("{id}/email", Name = "UpdateVerification")]
         [Consumes("application/json")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateVerification(int id, bool valid)
+        public async Task<IActionResult> UpdateVerification(int id, bool status)
         {
             try
             {
@@ -321,7 +321,7 @@ namespace ArangkadaAPI.Controllers
                     return NotFound($"Operator with id: {id} does not exist.");
                 }
 
-                var updatedVerification = await _service.UpdateIsVerified(id, valid);
+                var updatedVerification = await _service.UpdateIsVerified(id, status);
                 return Ok(updatedVerification);
             }
             catch (Exception ex)
