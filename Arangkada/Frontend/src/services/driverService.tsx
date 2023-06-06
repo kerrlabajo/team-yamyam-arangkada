@@ -11,7 +11,7 @@ export const driverService = {
     },
 
     getDriversByOperator: async (operatorId: string): Promise<Driver[]> => {
-      const response = await axios.get<Driver[]>(`${driversURL}/by/op/${operatorId}`);
+      const response = await axios.get<Driver[]>(`${driversURL}/operator/${operatorId}`);
       return response.data;
     },
 
@@ -25,8 +25,8 @@ export const driverService = {
       return response.data;
     },
 
-    assignDriver: async (id: string, pnum: string): Promise<Driver> => {
-      const response = await axios.put<Driver>(`${driversURL}/${id}/assign?pnum=${pnum}`);
+    assignDriver: async (id: string, vehicle: string): Promise<Driver> => {
+        const response = await axios.put<Driver>(`${driversURL}/${id}/assign?vehicle=${vehicle}`);
       return response.data;
     },    
 

@@ -11,7 +11,7 @@ export const transactionService = {
     },
 
     getTransactionsByOperator: async (operatorId: string): Promise<Transaction[]> => {
-        const response = await axios.get<Transaction[]>(`${transactionsURL}/by/op/${operatorId}`);
+        const response = await axios.get<Transaction[]>(`${transactionsURL}/operator/${operatorId}`);
         return response.data;
     },
 

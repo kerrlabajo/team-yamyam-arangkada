@@ -21,12 +21,12 @@ export const operatorService = {
     },
 
     getPasswordById: async (id: string): Promise<string> => {
-      const response = await axios.get<string>(`${operatorsURL}/${id}/p`);
+      const response = await axios.get<string>(`${operatorsURL}/${id}/password`);
       return response.data;
     },
 
     getIsVerifiedById: async (id: string): Promise<boolean> => {
-      const response = await axios.get<boolean>(`${operatorsURL}/${id}/v`);
+      const response = await axios.get<boolean>(`${operatorsURL}/${id}/status`);
       return response.data;
     },
 
@@ -35,8 +35,8 @@ export const operatorService = {
       return response.data;
     },
 
-    updateVerification: async (id: string, valid: boolean): Promise<Operator> => {
-      const response = await axios.put<Operator>(`${operatorsURL}/${id}/email/verify?valid=${valid}`);
+    updateVerification: async (id: string, status: boolean): Promise<Operator> => {
+        const response = await axios.put<Operator>(`${operatorsURL}/${id}/email?status=${status}`);
       return response.data;
     },
 
