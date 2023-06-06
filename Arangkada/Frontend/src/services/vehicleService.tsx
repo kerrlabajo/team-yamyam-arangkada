@@ -11,7 +11,7 @@ export const vehicleService = {
     },
 
     getVehiclesByOperator: async (operatorId: string): Promise<Vehicle[]> => {
-      const response = await axios.get<Vehicle[]>(`${vehiclesURL}/by/op/${operatorId}`);
+      const response = await axios.get<Vehicle[]>(`${vehiclesURL}/operator/${operatorId}`);
       return response.data;
     },
 
@@ -20,13 +20,13 @@ export const vehicleService = {
       return response.data;
     },
 
-    editRentStatus: async (id: string, rentStatus: boolean): Promise<Vehicle> => {
-      const response = await axios.put<Vehicle>(`${vehiclesURL}/${id}/status/edit?rentStatus=${rentStatus}`);
+    editRentStatus: async (id: string, status: boolean): Promise<Vehicle> => {
+        const response = await axios.put<Vehicle>(`${vehiclesURL}/${id}/rent?status=${status}`);
       return response.data;
     },
 
-    editRentFee: async (id: string, rentFee: number): Promise<Vehicle> => {
-      const response = await axios.put<Vehicle>(`${vehiclesURL}/${id}/fee/edit?rentFee=${rentFee}`);
+    editRentFee: async (id: string, value: number): Promise<Vehicle> => {
+        const response = await axios.put<Vehicle>(`${vehiclesURL}/${id}/fee?value=${value}`);
       return response.data;
     },
 

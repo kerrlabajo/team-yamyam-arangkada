@@ -90,7 +90,7 @@ namespace ArangkadaAPI.Controllers
         /// <response code="200">Returns the list of drivers.</response>
         /// <response code="404">If no drivers were found for the specified operator ID.</response>
         /// <response code="500">If there was an internal server error.</response>
-        [HttpGet("by/op/{operatorId}", Name = "GetDriversByOperatorId")]
+        [HttpGet("operator/{operatorId}", Name = "GetDriversByOperatorId")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(IEnumerable<DriverDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -219,7 +219,7 @@ namespace ArangkadaAPI.Controllers
         ///
         /// </remarks>
         /// <param name="id">The ID of the driver.</param>
-        /// <param name="pnum">The plate number of the vehicle to assign.</param>
+        /// <param name="vehicle">The plate number of the vehicle to assign.</param>
         /// <returns>The updated driver.</returns>
         /// <response code="200">Returns the updated driver.</response>
         /// <response code="404">If the driver or the vehicle does not exist.</response>
@@ -232,24 +232,24 @@ namespace ArangkadaAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> AssignDriver(int id, string pnum)
+        public async Task<IActionResult> AssignDriver(int id, string vehicle)
         {
             try
             {
-                var vehicle = await _vehicleService.GetByPlateNumber(pnum);
-                    if (vehicle == null)
+                var existingVehicle = await _vehicleService.GetByPlateNumber(vehicle);
+                    if (existingVehicle == null)
                     {
-                        return NotFound($"Vehicle with plate number: {pnum} does not exist.");
+                        return NotFound($"Vehicle with plate number: {vehicle} does not exist.");
                     }
 
-                    if (vehicle.RentStatus)
+                    if (existingVehicle.RentStatus)
                     {
-                        return StatusCode(409, $"Vehicle with plate number: {pnum} is already rented.");
+                        return StatusCode(409, $"Vehicle with plate number: {vehicle} is already rented.");
                     }
                
-                var updatedDriver = await _driverService.UpdateVehicleAssigned(id, pnum);
+                var updatedDriver = await _driverService.UpdateVehicleAssigned(id, vehicle);
                     
-                await _vehicleService.UpdateRentStatus(vehicle.Id, true);
+                await _vehicleService.UpdateRentStatus(existingVehicle.Id, true);
 
                 return Ok(updatedDriver!);
             }
