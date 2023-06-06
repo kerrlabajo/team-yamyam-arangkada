@@ -42,7 +42,7 @@ namespace ArangkadaAPI.Services
         /// </summary>
         /// <param name="id">The ID of the operator.</param>
         /// <returns>True if the operator is verified, false if not verified, or null if not found.</returns>
-        Task<bool?> GetIsVerifiedById(int id);
+        Task<bool?> GetVerificationStatusById(int id);
 
         /// <summary>
         /// Retrieves the password of an operator by ID.

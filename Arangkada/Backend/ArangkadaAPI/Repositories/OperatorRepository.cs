@@ -98,9 +98,9 @@ namespace ArangkadaAPI.Repositories
             }
         }
 
-        public async Task<bool> GetIsVerifiedById(int id)
+        public async Task<bool> GetVerificationStatusById(int id)
         {
-            var sql = "SELECT o.IsVerified " +
+            var sql = "SELECT o.VerificationStatus " +
                       "FROM Operator o " +
                       "WHERE o.Id = @Id;";
             using (var con = _context.CreateConnection())

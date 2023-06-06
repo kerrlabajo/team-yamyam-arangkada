@@ -233,10 +233,10 @@ namespace ArangkadaTests.ServicesTests
         {
             int id = 1;
 
-            _fakeOperatorRepository.Setup(x => x.GetIsVerifiedById(id))
+            _fakeOperatorRepository.Setup(x => x.GetVerificationStatusById(id))
                                    .ReturnsAsync(true);
 
-            var result = await _operatorService.GetIsVerifiedById(id);
+            var result = await _operatorService.GetVerificationStatusById(id);
 
             Assert.True(result);
         }
@@ -247,10 +247,10 @@ namespace ArangkadaTests.ServicesTests
         {
             int id = 1;
 
-            _fakeOperatorRepository.Setup(x => x.GetIsVerifiedById(id))
+            _fakeOperatorRepository.Setup(x => x.GetVerificationStatusById(id))
                                    .ThrowsAsync(new Exception("Test Exception"));
 
-            var result = await _operatorService.GetIsVerifiedById(id);
+            var result = await _operatorService.GetVerificationStatusById(id);
 
             Assert.Null(result);
         }
@@ -274,7 +274,7 @@ namespace ArangkadaTests.ServicesTests
                 FullName = "Updated Full Name",
                 Username = "updatedUsername",
                 Email = "updated@mail.com",
-                IsVerified = false,
+                VerificationStatus = false,
                 Vehicles = 0,
                 Drivers = 0
             };
@@ -328,7 +328,7 @@ namespace ArangkadaTests.ServicesTests
                 Username = "takamoriuchi",
                 Password = "0ne0kr0ck",
                 Email = "taka.oor@email.com",
-                IsVerified = isVerified,
+                VerificationStatus = isVerified,
                 Vehicles = 0,
                 Drivers = 0
             };
@@ -339,7 +339,7 @@ namespace ArangkadaTests.ServicesTests
                 FullName = "Taka Moriuchi",
                 Username = "takamoriuchi",
                 Email = "taka.oor@email.com",
-                IsVerified = isVerified,
+                VerificationStatus = isVerified,
                 Vehicles = 0,
                 Drivers = 0
             };

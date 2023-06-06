@@ -223,10 +223,10 @@ namespace ArangkadaTests.ControllerTests
         {
             bool expectedIsVerified = true;
 
-            _fakeOperatorService.Setup(x => x.GetIsVerifiedById(It.IsAny<int>()))
+            _fakeOperatorService.Setup(x => x.GetVerificationStatusById(It.IsAny<int>()))
                        .ReturnsAsync(expectedIsVerified);
 
-            var result = await _controller.GetIsVerifiedById(It.IsAny<int>());
+            var result = await _controller.GetVerificationStatusById(It.IsAny<int>());
 
             Assert.IsType<OkObjectResult>(result);
         }
@@ -236,10 +236,10 @@ namespace ArangkadaTests.ControllerTests
         {
             bool? expectedIsVerified = null;
 
-            _fakeOperatorService.Setup(x => x.GetIsVerifiedById(It.IsAny<int>()))
+            _fakeOperatorService.Setup(x => x.GetVerificationStatusById(It.IsAny<int>()))
                        .ReturnsAsync(expectedIsVerified);
 
-            var result = await _controller.GetIsVerifiedById(It.IsAny<int>());
+            var result = await _controller.GetVerificationStatusById(It.IsAny<int>());
 
             Assert.IsType<NotFoundObjectResult>(result);
             Assert.Equal(404, ((NotFoundObjectResult)result).StatusCode);
@@ -249,10 +249,10 @@ namespace ArangkadaTests.ControllerTests
         [Fact]
         public async void GetIsVerifiedById_Exception_ReturnsServerError()
         {
-            _fakeOperatorService.Setup(x => x.GetIsVerifiedById(It.IsAny<int>()))
+            _fakeOperatorService.Setup(x => x.GetVerificationStatusById(It.IsAny<int>()))
                                    .ThrowsAsync(new Exception());
 
-            var result = await _controller.GetIsVerifiedById(It.IsAny<int>());
+            var result = await _controller.GetVerificationStatusById(It.IsAny<int>());
 
             Assert.IsType<ObjectResult>(result);
             Assert.Equal(500, ((ObjectResult)result).StatusCode);

@@ -37,7 +37,7 @@ namespace ArangkadaTests.MappingsTests
                 Username = "hayleywilliams",
                 Password = "p4r4m0re",
                 Email = "hayley.paramore@email.com",
-                IsVerified = false,
+                VerificationStatus = false,
                 Vehicles = 0,
                 Drivers = 0
             };
@@ -48,7 +48,7 @@ namespace ArangkadaTests.MappingsTests
             Assert.Equal(op.FullName, operatorDto.FullName);
             Assert.Equal(op.Username, operatorDto.Username);
             Assert.Equal(op.Email, operatorDto.Email);
-            Assert.Equal(op.IsVerified, operatorDto.IsVerified);
+            Assert.Equal(op.VerificationStatus, operatorDto.VerificationStatus);
             Assert.Equal(op.Vehicles, operatorDto.Vehicles);
             Assert.Equal(op.Drivers, operatorDto.Drivers);
         }

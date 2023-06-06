@@ -210,16 +210,16 @@ namespace ArangkadaAPI.Controllers
         /// <response code="200">Returns the operator's verification status with its ID.</response>
         /// <response code="404">If the  operator's verification status with the specified ID does not exist.</response>
         /// <response code="500">If there was an internal server error.</response>
-        [HttpGet("{id}/status", Name = "GetIsVerifiedById")]
+        [HttpGet("{id}/status", Name = "GetVerificationStatusById")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetIsVerifiedById(int id)
+        public async Task<IActionResult> GetVerificationStatusById(int id)
         {
             try
             {
-                var isVerified = await _service.GetIsVerifiedById(id);
+                var isVerified = await _service.GetVerificationStatusById(id);
                 if (isVerified == null)
                 {
                     return NotFound($"Operator with id: {id} does not exist.");
@@ -228,7 +228,7 @@ namespace ArangkadaAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something went wrong in the {nameof(GetIsVerifiedById)}");
+                _logger.LogError(ex, $"Something went wrong in the {nameof(GetVerificationStatusById)}");
                 return StatusCode(500, "Internal server error. Please try again later.");
             }
         }

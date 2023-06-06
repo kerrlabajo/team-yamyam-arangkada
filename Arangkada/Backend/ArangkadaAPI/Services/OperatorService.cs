@@ -107,11 +107,11 @@ namespace ArangkadaAPI.Services
             }
         }
 
-        public async Task<bool?> GetIsVerifiedById(int id)
+        public async Task<bool?> GetVerificationStatusById(int id)
         {
             try
             {
-                var isVerifiedBool = await _repository.GetIsVerifiedById(id);
+                var isVerifiedBool = await _repository.GetVerificationStatusById(id);
 
                 return isVerifiedBool;
             }
