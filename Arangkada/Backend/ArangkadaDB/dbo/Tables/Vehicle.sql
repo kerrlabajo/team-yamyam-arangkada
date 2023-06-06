@@ -5,6 +5,7 @@
 	[PlateNumber] NVARCHAR(50) NOT NULL,
 	[BodyType] NVARCHAR(50) NOT NULL,
 	[Make] NVARCHAR(50) NOT NULL,
+	[DistinctionLabel] NVARCHAR(50) NOT NULL,
 	[RentFee] FLOAT NOT NULL,
 	[RentStatus] BIT NOT NULL,
 	[OperatorId] INT NOT NULL,

@@ -29,29 +29,29 @@ BEGIN
 
     -- Insert sample data into Operator table
     SET IDENTITY_INSERT [dbo].[Operator] ON
-    INSERT INTO [dbo].[Operator] ([Id], [FullName], [Username], [Password], [Email], [IsVerified])
+    INSERT INTO [dbo].[Operator] ([Id], [FullName], [Username], [Password], [Email], [VerificationStatus], [VerificationCode])
     VALUES
-        (1, 'Operator 1', 'operator1', 'pass1', 'operator1@example.com', 1),
-        (2, 'Operator 2', 'operator2', 'pass2', 'operator2@example.com', 1),
-        (3, 'Operator 3', 'operator3', 'pass3', 'operator3@example.com', 1),
-        (4, 'Operator 4', 'operator4', 'pass4', 'operator4@example.com', 1),
-        (5, 'Operator 5', 'operator5', 'pass5', 'operator5@example.com', 1);
+        (1, 'Operator 1', 'operator1', 'pass1', 'operator1@example.com', 1, null),
+        (2, 'Operator 2', 'operator2', 'pass2', 'operator2@example.com', 1, null),
+        (3, 'Operator 3', 'operator3', 'pass3', 'operator3@example.com', 1, null),
+        (4, 'Operator 4', 'operator4', 'pass4', 'operator4@example.com', 1, null),
+        (5, 'Operator 5', 'operator5', 'pass5', 'operator5@example.com', 1, null);
     SET IDENTITY_INSERT [dbo].[Operator] OFF
 
     -- Insert sample data into Vehicle table
     SET IDENTITY_INSERT [dbo].[Vehicle] ON
-    INSERT INTO [dbo].[Vehicle] ([Id], [CRNumber], [PlateNumber], [BodyType], [Make], [RentFee], [RentStatus], [OperatorId])
+    INSERT INTO [dbo].[Vehicle] ([Id], [CRNumber], [PlateNumber], [BodyType], [Make], [DistinctionLabel], [RentFee], [RentStatus], [OperatorId])
     VALUES
-        (1, 'CR0001', 'AAA1234', 'Sedan', 'Toyota', 1000.00, 0, 1),
-        (2, 'CR0002', 'BBB5678', 'SUV', 'Honda', 1500.00, 1, 2),
-        (3, 'CR0003', 'CCC9012', 'Truck', 'Ford', 2000.00, 0, 1),
-        (4, 'CR0004', 'DDD3456', 'Van', 'Nissan', 1800.00, 1, 2),
-        (5, 'CR0005', 'EEE7890', 'Sports', 'Mazda', 3000.00, 0, 3),
-        (6, 'CR0006', 'FFF1234', 'Sedan', 'Hyundai', 1050.00, 0, 4),
-        (7, 'CR0007', 'GGG5678', 'SUV', 'Mitsubishi', 1550.00, 1, 3),
-        (8, 'CR0008', 'HHHH9012', 'Truck', 'Lexus', 2540.00, 0, 4),
-        (9, 'CR0009', 'III456', 'Van', 'Toyota', 1950.00, 1, 5),
-        (10, 'CR0010', 'JJJ7890', 'Sports', 'Nissan', 3250.00, 0, 5);
+        (1, 'CR0001', 'AAA1234', 'Sedan', 'Toyota', 'Black-White', 1000.00, 0, 1),
+        (2, 'CR0002', 'BBB5678', 'SUV', 'Honda', 'Green-White', 1500.00, 1, 2),
+        (3, 'CR0003', 'CCC9012', 'Truck', 'Ford', 'Black-Red', 2000.00, 0, 1),
+        (4, 'CR0004', 'DDD3456', 'Van', 'Nissan', 'Black-Green', 1800.00, 1, 2),
+        (5, 'CR0005', 'EEE7890', 'Sports', 'Mazda', 'Brown-White', 3000.00, 0, 3),
+        (6, 'CR0006', 'FFF1234', 'Sedan', 'Hyundai', 'Blue-Red', 1050.00, 0, 4),
+        (7, 'CR0007', 'GGG5678', 'SUV', 'Mitsubishi', 'Blue-White', 1550.00, 1, 3),
+        (8, 'CR0008', 'HHHH9012', 'Truck', 'Lexus', 'Violet-White', 2540.00, 0, 4),
+        (9, 'CR0009', 'III456', 'Van', 'Toyota', 'Orange-Red', 1950.00, 1, 5),
+        (10, 'CR0010', 'JJJ7890', 'Sports', 'Nissan', 'Orange-White', 3250.00, 0, 5);
     SET IDENTITY_INSERT [dbo].[Vehicle] OFF
 
     -- Insert sample data into Driver table

@@ -5,6 +5,6 @@
 	[Username] NVARCHAR(100) NOT NULL,
 	[Password] NVARCHAR(100) NOT NULL,
 	[Email] NVARCHAR(100) NOT NULL,
-	[IsVerified] BIT DEFAULT 0,
+	[VerificationStatus] BIT DEFAULT 0,
 	[VerificationCode] NVARCHAR(50) NULL
 )
