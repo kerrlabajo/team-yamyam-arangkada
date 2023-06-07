@@ -16,7 +16,7 @@ export const operatorService = {
     },
 
     getOperatorByUserName: async (userName: string): Promise<Operator> => {
-      const response = await axios.get<Operator>(`${operatorsURL}/un/${userName}`);
+      const response = await axios.get<Operator>(`${operatorsURL}/username/${userName}`);
       return response.data;
     },
 
