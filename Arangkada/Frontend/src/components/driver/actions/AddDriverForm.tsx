@@ -24,7 +24,8 @@ const AddDriverForm = () => {
         contactNumber: "",
         licenseNumber: "",
         expirationDate: "",
-        dlCodes: ""
+        dlCodes: "",
+        category: ""
     })
 
     const onSubmit = async (event: { preventDefault: () => void; }) => {
@@ -38,7 +39,8 @@ const AddDriverForm = () => {
                 contactNumber: data.contactNumber,
                 licenseNumber: data.licenseNumber,
                 expirationDate: data.expirationDate,
-                dlCodes: data.dlCodes
+                dlCodes: data.dlCodes,
+                category: data.category
             })
             .then(() => {
                 setMessage("Driver Successfully Added.");
@@ -128,6 +130,18 @@ const AddDriverForm = () => {
                     value={data.expirationDate}
                     name="expirationDate"
                     label="Expiration Date"
+                    size="small"
+                    fullWidth
+                    required
+                >
+                </TextField>
+            </Grid>
+            <Grid item xs={12} md={6}>
+                <TextField
+                    onChange={handleChange}
+                    value={data.category}
+                    name="category"
+                    label="Category"
                     size="small"
                     fullWidth
                     required

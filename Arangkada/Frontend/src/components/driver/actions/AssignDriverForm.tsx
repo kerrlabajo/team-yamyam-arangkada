@@ -28,6 +28,7 @@ const AssignDriverForm  = () =>{
         licenseNumber: "",
         expirationDate: "",
         dlCodes: "",
+        category: "",
         vehicleAssigned: ""
     })
     const { fullName, address, contactNumber, licenseNumber, expirationDate, dlCodes, vehicleAssigned } = data;
@@ -143,6 +144,18 @@ const AssignDriverForm  = () =>{
                     size="small" 
                     variant="outlined"
                     name="dlCodes"
+                    disabled 
+                    fullWidth
+                >
+                </TextField>
+            </Grid>
+            <Grid item xs={12} md={6}>
+                <TextField 
+                    value={data.category}
+                    label="Category" 
+                    size="small" 
+                    variant="outlined"
+                    name="category"
                     disabled 
                     fullWidth
                 >

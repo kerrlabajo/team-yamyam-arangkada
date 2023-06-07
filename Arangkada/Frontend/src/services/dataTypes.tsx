@@ -58,6 +58,7 @@ export type Driver = {
   licenseNumber: string,
   expirationDate: string,
   dlCodes: string,
+  category: string,
   [key: string]: string | number | boolean;
 };
 
@@ -68,7 +69,8 @@ export type PostDriver = {
   contactNumber: string,
   licenseNumber: string,
   expirationDate: string,
-  dlCodes: string
+  dlCodes: string,
+  category: string
 }
 
 export type PutDriver = {
@@ -77,7 +79,8 @@ export type PutDriver = {
   contactNumber: string,
   licenseNumber: string,
   expirationDate: string,
-  dlCodes: string
+  dlCodes: string,
+  category: string
 }
 
 export type Transaction = {

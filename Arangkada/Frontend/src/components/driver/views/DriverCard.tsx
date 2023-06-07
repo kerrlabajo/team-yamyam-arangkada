@@ -50,6 +50,9 @@ const DriverCard = ({ driver }: DriverCardProps) => {
           <Typography
             variant="body1">DL Codes: <b>{driver.dlCodes}</b>
           </Typography>
+          <Typography
+            variant="body1">Category: <b>{driver.category}</b>
+          </Typography>
         </CardContent>
         <CardActions>
           <Stack direction={{ xs: "column-reverse", md: "row" }} width="100%" spacing={{ xs: 2, md: 3 }} justifyContent="end" padding={1}>

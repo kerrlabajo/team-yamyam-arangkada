@@ -24,7 +24,8 @@ const EditDriverForm  = () =>{
         contactNumber: "",
         licenseNumber: "",
         expirationDate: "",
-        dlCodes: ""
+        dlCodes: "",
+        category: ""
     })
     const { fullName, address, contactNumber, licenseNumber, expirationDate, dlCodes } = data;
     const updateDriver = async (e: { preventDefault: () => void; }) => {
@@ -141,6 +142,19 @@ const EditDriverForm  = () =>{
                     size="small" 
                     variant="outlined"
                     name="dlCodes"
+                    required 
+                    fullWidth
+                >
+                </TextField>
+            </Grid>
+            <Grid item xs={12} md={6}>
+                <TextField 
+                    onChange={handleChange} 
+                    value={data.category}
+                    label="Category" 
+                    size="small" 
+                    variant="outlined"
+                    name="category"
                     required 
                     fullWidth
                 >
