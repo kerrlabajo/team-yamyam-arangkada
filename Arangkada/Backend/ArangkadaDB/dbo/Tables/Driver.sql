@@ -7,6 +7,7 @@
 	[LicenseNumber] NVARCHAR(50) NOT NULL,
 	[ExpirationDate] NVARCHAR(20) NOT NULL,
 	[DLCodes] NVARCHAR(100) NOT NULL,
+	[Category] NVARCHAR(20) NOT NULL,
 	[OperatorId] INT NOT NULL,
 	[VehicleId] INT,
 	CONSTRAINT [FK_DriverOperator] FOREIGN KEY ([OperatorId]) REFERENCES [dbo].[Operator]([Id]),

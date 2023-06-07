@@ -57,20 +57,20 @@ BEGIN
     -- Insert sample data into Driver table
     SET IDENTITY_INSERT [dbo].[Driver] ON
     INSERT INTO [dbo].[Driver] ([Id], [FullName], [Address], [ContactNumber], 
-    [LicenseNumber], [ExpirationDate], [DLCodes], [OperatorId], [VehicleId])
+    [LicenseNumber], [ExpirationDate], [DLCodes], [Category], [OperatorId], [VehicleId])
     VALUES
-        (1, 'John Smith', '123 Main St', '123-456-7890', 'L123456', '2025-01-01', 'A,B,C', 1, null),
-        (2, 'Jane Doe', '456 Oak St', '234-567-8901', 'L234567', '2024-12-31', 'A,B', 1, null),
-        (3, 'Michael Johnson', '789 Pine St', '345-678-9012', 'L345678', '2026-05-15', 'A,C,D', 2,2),
-        (4, 'Emily Brown', '321 Elm St', '456-789-0123', 'L456789', '2027-07-30', 'B,C', 2,4),
-        (5, 'Daniel Williams', '654 Maple St', '567-890-1234', 'L567890', '2023-11-25', 'A,D', 3, null),
-        (6, 'Adrian Barcelona', '789 Jade St', '953-751-8436', 'L906592', '2022-012-13', 'A,B,C', 3,7),
-        (7, 'Neil Paras', '852 Strawberry St', '548-956-8451', 'L145635', '2027-06-01', 'A,B', 4, null),
-        (8, 'Lebrong James', '588 Lakers St', '626-194-5484', 'L997955', '2023-04-04', 'A,C,D', 4, null),
-        (9, 'Emily Pink', '321 Pink St', '634-516-4868', 'L456789', '2027-07-30', 'B,C', 5, 9),
-        (10,'Steph Curry Concentrate', '768 Golden St.', '215-848-6254', 'L123958', '2025-05-19', 'A,D', 5, null),
-        (11,'Steph Curry Powder', '768 Golden St.', '215-848-6254', 'L123958', '2025-05-19', 'A,D', 1,null),
-        (12,'Giannis Atatakoumpo', '429 Milwaukee St.', '953-858-8484', 'L612822', '2023-09-05', 'A,D', 3, null);
+        (1, 'John Smith', '123 Main St', '123-456-7890', 'L123456', '2025-01-01', 'A,B,C', 'Extra', 1, null),
+        (2, 'Jane Doe', '456 Oak St', '234-567-8901', 'L234567', '2024-12-31', 'A,B', 'Extra', 1, null),
+        (3, 'Michael Johnson', '789 Pine St', '345-678-9012', 'L345678', '2026-05-15', 'A,C,D', 'Primary', 2,2),
+        (4, 'Emily Brown', '321 Elm St', '456-789-0123', 'L456789', '2027-07-30', 'B,C', 'Primary', 2,4),
+        (5, 'Daniel Williams', '654 Maple St', '567-890-1234', 'L567890', '2023-11-25', 'A,D', 'Extra', 3, null),
+        (6, 'Adrian Barcelona', '789 Jade St', '953-751-8436', 'L906592', '2022-012-13', 'A,B,C', 'Primary', 3,7),
+        (7, 'Neil Paras', '852 Strawberry St', '548-956-8451', 'L145635', '2027-06-01', 'A,B', 'Extra', 4, null),
+        (8, 'Lebrong James', '588 Lakers St', '626-194-5484', 'L997955', '2023-04-04', 'A,C,D', 'Extra', 4, null),
+        (9, 'Emily Pink', '321 Pink St', '634-516-4868', 'L456789', '2027-07-30', 'B,C', 'Primary', 5, 9),
+        (10,'Steph Curry Concentrate', '768 Golden St.', '215-848-6254', 'L123958', '2025-05-19', 'A,D', 'Extra', 5, null),
+        (11,'Steph Curry Powder', '768 Golden St.', '215-848-6254', 'L123958', '2025-05-19', 'A,D', 'Extra', 1, null),
+        (12,'Giannis Atatakoumpo', '429 Milwaukee St.', '953-858-8484', 'L612822', '2023-09-05', 'A,D', 'Extra', 3, null);
 
     SET IDENTITY_INSERT [dbo].[Driver] OFF
 
