@@ -14,8 +14,8 @@ namespace ArangkadaAPI.Repositories
 
         public async Task<int> AddVehicle(Vehicle vehicle)
         {
-            var sql = "INSERT Vehicle (CRNumber,PlateNumber, BodyType, Make, RentFee, RentStatus, OperatorId)" +
-                "VALUES (@CRNumber, @PlateNumber, @BodyType, @Make, @RentFee, @RentStatus, @OperatorId);" +
+            var sql = "INSERT Vehicle (CRNumber,PlateNumber, BodyType, Make, DistinctionLabel, RentFee, RentStatus, OperatorId)" +
+                "VALUES (@CRNumber, @PlateNumber, @BodyType, @Make, @DistinctionLabel, @RentFee, @RentStatus, @OperatorId);" +
                 "SELECT CAST(SCOPE_IDENTITY() as int);";
 
             var operatorId = await GetOperatorId(vehicle.OperatorName);
