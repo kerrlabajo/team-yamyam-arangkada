@@ -38,7 +38,8 @@ namespace ArangkadaTests.ControllerTests
                 ContactNumber = "09221321",
                 LicenseNumber = "161230129391",
                 ExpirationDate = "21/12/2001",
-                DLCodes = "A1"
+                DLCodes = "A1",
+                Category = "Primary"
             };
 
             _fakeDriverService.Setup(x => x.CreateDriver(newDriver))
@@ -64,7 +65,8 @@ namespace ArangkadaTests.ControllerTests
                 ContactNumber = "09221321",
                 LicenseNumber = "161230129391",
                 ExpirationDate = "21/12/2001",
-                DLCodes = "A1"
+                DLCodes = "A1",
+                Category = "Primary"
             };
 
             var existingDriver = new DriverDto
@@ -76,7 +78,8 @@ namespace ArangkadaTests.ControllerTests
                 ContactNumber = "09221321",
                 LicenseNumber = "161230129391",
                 ExpirationDate = "21/12/2001",
-                DLCodes = "A1"
+                DLCodes = "A1",
+                Category = "Primary"
             };
 
             _fakeDriverService.Setup(x => x.GetByFullName(newDriver.FullName))
@@ -103,7 +106,8 @@ namespace ArangkadaTests.ControllerTests
                 ContactNumber = "09221321",
                 LicenseNumber = "161230129391",
                 ExpirationDate = "21/12/2001",
-                DLCodes = "A1"
+                DLCodes = "A1",
+                Category = "Primary"
             };
             _controller.ModelState.AddModelError("OperatorName", "Required");
             _controller.ModelState.AddModelError("FullName", "Required");
@@ -112,6 +116,7 @@ namespace ArangkadaTests.ControllerTests
             _controller.ModelState.AddModelError("LicenseNumber", "Required");
             _controller.ModelState.AddModelError("ExpirationDate", "Required");
             _controller.ModelState.AddModelError("DLCodes", "Required");
+            _controller.ModelState.AddModelError("Category", "Required");
 
             // Act
             var result = await _controller.AddDriver(newDriver);
@@ -133,7 +138,8 @@ namespace ArangkadaTests.ControllerTests
                 ContactNumber = "09221321",
                 LicenseNumber = "161230129391",
                 ExpirationDate = "21/12/2001",
-                DLCodes = "A1"
+                DLCodes = "A1",
+                Category = "Primary"
             };
             _fakeDriverService.Setup(x => x.CreateDriver(newDriver))
                               .ThrowsAsync(new Exception());
@@ -255,7 +261,8 @@ namespace ArangkadaTests.ControllerTests
                 ContactNumber = "09221321",
                 LicenseNumber = "161230129391",
                 ExpirationDate = "21/12/2001",
-                DLCodes = "A1"
+                DLCodes = "A1",
+                Category = "Primary"
             };
 
             //Act
@@ -285,7 +292,8 @@ namespace ArangkadaTests.ControllerTests
                 ContactNumber = "09221321",
                 LicenseNumber = "161230129391",
                 ExpirationDate = "21/12/2001",
-                DLCodes = "A1"
+                DLCodes = "A1",
+                Category = "Primary"
             };
 
             //Act
@@ -316,7 +324,8 @@ namespace ArangkadaTests.ControllerTests
                 ContactNumber = "09221321",
                 LicenseNumber = "161230129391",
                 ExpirationDate = "21/12/2001",
-                DLCodes = "A1"
+                DLCodes = "A1",
+                Category = "Primary"
             };
 
             //Act

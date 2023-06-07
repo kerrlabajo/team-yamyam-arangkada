@@ -32,7 +32,8 @@ namespace ArangkadaAPI.Controllers
         ///         "licenseNumber": "12345678",
         ///         "address": "123 Main Street",
         ///         "expirationDate": "2022-05-31",
-        ///         "dlCodes": "A,B"
+        ///         "dlCodes": "A,B",
+        ///         "category": "Primary"
         ///     }
         ///
         /// </remarks>
@@ -165,7 +166,8 @@ namespace ArangkadaAPI.Controllers
         ///         "licenseNumber": "12345678",
         ///         "address": "123 Main Street",
         ///         "expirationDate": "2022-05-31",
-        ///         "dlCodes": "A,B"
+        ///         "dlCodes": "A,B",
+        ///         "category": "Extra"
         ///     }
         ///
         /// </remarks>

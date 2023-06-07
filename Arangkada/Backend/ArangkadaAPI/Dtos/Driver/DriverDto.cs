@@ -29,5 +29,6 @@
         public string? LicenseNumber { get; set; }
         public string? ExpirationDate { get; set; }
         public string? DLCodes { get; set; }
+        public string? Category { get; set; }
     }
 }

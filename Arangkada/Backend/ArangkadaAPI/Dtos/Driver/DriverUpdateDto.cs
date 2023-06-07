@@ -28,5 +28,9 @@ namespace ArangkadaAPI.Dtos.Driver
         [Required(ErrorMessage = "The DLCodes is required.")]
         [MaxLength(100, ErrorMessage = "Maximum length for the DLCodes is 20 characters.")]
         public string? DLCodes { get; set; }
+
+        [Required(ErrorMessage = "The Category is required.")]
+        [MaxLength(100, ErrorMessage = "Maximum length for the Category is 20 characters.")]
+        public string? Category { get; set;}
     }
 }

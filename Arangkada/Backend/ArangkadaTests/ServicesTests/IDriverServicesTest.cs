@@ -50,7 +50,8 @@ namespace ArangkadaTests.ServicesTests
                 ContactNumber = "09221321",
                 LicenseNumber = "161230129391",
                 ExpirationDate = "21/12/2001",
-                DLCodes = "A1"
+                DLCodes = "A1",
+                Category = "Primary"
             };
 
             _fakeDriverRepository.Setup(x => x.CreateDriver(It.IsAny<Driver>()))
@@ -76,7 +77,8 @@ namespace ArangkadaTests.ServicesTests
                     ContactNumber = "09221321",
                     LicenseNumber = "161230129391",
                     ExpirationDate = "21/12/2001",
-                    DLCodes = "A1"
+                    DLCodes = "A1",
+                    Category = "Extra"
                 },
                 new Driver
                 {
@@ -88,7 +90,8 @@ namespace ArangkadaTests.ServicesTests
                     ContactNumber = "09221321",
                     LicenseNumber = "161230129391",
                     ExpirationDate = "21/12/2001",
-                    DLCodes = "A1"
+                    DLCodes = "A1",
+                    Category = "Extra"
                 }
             };
 
@@ -104,7 +107,8 @@ namespace ArangkadaTests.ServicesTests
                     ContactNumber = "09221321",
                     LicenseNumber = "161230129391",
                     ExpirationDate = "21/12/2001",
-                    DLCodes = "A1"
+                    DLCodes = "A1",
+                    Category = "Extra"
                 },
                 new DriverDto
                 {
@@ -116,7 +120,8 @@ namespace ArangkadaTests.ServicesTests
                     ContactNumber = "09221321",
                     LicenseNumber = "161230129391",
                     ExpirationDate = "21/12/2001",
-                    DLCodes = "A1"
+                    DLCodes = "A1",
+                    Category = "Extra"
                 }
             };
 
@@ -244,7 +249,8 @@ namespace ArangkadaTests.ServicesTests
                 ContactNumber = "Updated Contact Number",
                 LicenseNumber = "Updated License Number",
                 ExpirationDate = "Updated Expiration Date",
-                DLCodes = "Updated DL Codes"
+                DLCodes = "Updated DL Codes",
+                Category = "Updated Category"
             };
 
             var existingDriver = new Driver
@@ -257,7 +263,8 @@ namespace ArangkadaTests.ServicesTests
                 ContactNumber = "09221321",
                 LicenseNumber = "161230129391",
                 ExpirationDate = "21/12/2001",
-                DLCodes = "A1"
+                DLCodes = "A1",
+                Category = "Extra"
             };
 
             var updatedDriver = new Driver
@@ -270,7 +277,8 @@ namespace ArangkadaTests.ServicesTests
                 ContactNumber = "Updated Contact Number",
                 LicenseNumber = "Updated License Number",
                 ExpirationDate = "Updated Expiration Date",
-                DLCodes = "Updated DL Codes"
+                DLCodes = "Updated DL Codes",
+                Category = "Updated Category"
             };
 
             var expectedDriverDto = new DriverDto
@@ -283,7 +291,8 @@ namespace ArangkadaTests.ServicesTests
                 ContactNumber = "Updated Contact Number",
                 LicenseNumber = "Updated License Number",
                 ExpirationDate = "Updated Expiration Date",
-                DLCodes = "Updated DL Codes"
+                DLCodes = "Updated DL Codes",
+                Category = "Updated Category"
             };
 
             _fakeDriverRepository.Setup(x => x.GetById(driverId))
@@ -314,7 +323,8 @@ namespace ArangkadaTests.ServicesTests
                 ContactNumber = "Updated Contact Number",
                 LicenseNumber = "Updated License Number",
                 ExpirationDate = "Updated Expiration Date",
-                DLCodes = "Updated DL Codes"
+                DLCodes = "Updated DL Codes",
+                Category = "Updated Category"
             };
             var existingDriver = new Driver
             {
@@ -326,7 +336,8 @@ namespace ArangkadaTests.ServicesTests
                 ContactNumber = "09221321",
                 LicenseNumber = "161230129391",
                 ExpirationDate = "21/12/2001",
-                DLCodes = "A1"
+                DLCodes = "A1",
+                Category = "Extra"
             };
             _fakeMapper.Setup(x => x.Map<Driver>(driverToUpdate))
                        .Returns(existingDriver);
@@ -354,7 +365,8 @@ namespace ArangkadaTests.ServicesTests
                 ContactNumber = "09221321",
                 LicenseNumber = "161230129391",
                 ExpirationDate = "21/12/2001",
-                DLCodes = "A1"
+                DLCodes = "A1",
+                Category = "Extra"
             };
 
             var updatedDriver = new Driver
@@ -367,7 +379,8 @@ namespace ArangkadaTests.ServicesTests
                 ContactNumber = "09221321",
                 LicenseNumber = "161230129391",
                 ExpirationDate = "21/12/2001",
-                DLCodes = "A1"
+                DLCodes = "A1",
+                Category = "Primary"
             };
 
             var expectedDriverDto = new DriverDto
@@ -380,7 +393,8 @@ namespace ArangkadaTests.ServicesTests
                 ContactNumber = "09221321",
                 LicenseNumber = "161230129391",
                 ExpirationDate = "21/12/2001",
-                DLCodes = "A1"
+                DLCodes = "A1",
+                Category = "Primary"
             };
 
             _fakeDriverRepository.Setup(x => x.GetById(driverId))
@@ -412,7 +426,8 @@ namespace ArangkadaTests.ServicesTests
                 ContactNumber = "09221321",
                 LicenseNumber = "161230129391",
                 ExpirationDate = "21/12/2001",
-                DLCodes = "A1"
+                DLCodes = "A1",
+                Category = "Extra"
             };
             _fakeDriverRepository.Setup(x => x.UpdateVehicleAssigned(driverId, plateNumberAssigned))
                                  .Throws(new Exception("Simulated Exception"));

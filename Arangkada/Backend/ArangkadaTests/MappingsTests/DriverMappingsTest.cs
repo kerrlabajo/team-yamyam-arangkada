@@ -43,7 +43,8 @@ namespace ArangkadaTests.MappingsTests
                 ContactNumber = "ContactNumber",
                 LicenseNumber = "LicenseNumber",
                 ExpirationDate = "ExpirationDate",
-                DLCodes = "DLCodes"
+                DLCodes = "DLCodes",
+                Category = "Category"
             };
 
             // Act
@@ -59,6 +60,7 @@ namespace ArangkadaTests.MappingsTests
             Assert.Equal(driver.LicenseNumber, driverDto.LicenseNumber);
             Assert.Equal(driver.ExpirationDate, driverDto.ExpirationDate);
             Assert.Equal(driver.DLCodes, driverDto.DLCodes);
+            Assert.Equal(driver.Category, driverDto.Category);
         }
 
         [Fact]
@@ -73,7 +75,8 @@ namespace ArangkadaTests.MappingsTests
                 ContactNumber = "555-1234",
                 LicenseNumber = "ABC123",
                 ExpirationDate = "2023-12-31",
-                DLCodes = "DL1,DL2"
+                DLCodes = "DL1,DL2",
+                Category = "Primary"
             };
 
             // Act
@@ -87,6 +90,7 @@ namespace ArangkadaTests.MappingsTests
             Assert.Equal(driverCreationDto.LicenseNumber, driver.LicenseNumber);
             Assert.Equal(driverCreationDto.ExpirationDate, driver.ExpirationDate);
             Assert.Equal(driverCreationDto.DLCodes, driver.DLCodes);
+            Assert.Equal(driverCreationDto.Category, driver.Category);
         }
         
         [Fact]
@@ -100,7 +104,8 @@ namespace ArangkadaTests.MappingsTests
                 ContactNumber = "555-1234",
                 LicenseNumber = "ABC123",
                 ExpirationDate = "2023-12-31",
-                DLCodes = "DL1,DL2"
+                DLCodes = "DL1,DL2",
+                Category = "Extra"
             };
 
             // Act
@@ -113,6 +118,7 @@ namespace ArangkadaTests.MappingsTests
             Assert.Equal(driverUpdateDto.LicenseNumber, driver.LicenseNumber);
             Assert.Equal(driverUpdateDto.ExpirationDate, driver.ExpirationDate);
             Assert.Equal(driverUpdateDto.DLCodes, driver.DLCodes);
+            Assert.Equal(driverUpdateDto.Category, driver.Category);
         }
     }
 }

@@ -16,8 +16,8 @@ namespace ArangkadaAPI.Repositories
 
         public async Task<int> CreateDriver(Driver driver)
         {
-            var sql = "INSERT Driver (FullName, Address, ContactNumber, LicenseNumber, ExpirationDate, DLCodes, OperatorId) " +
-                      "VALUES (@FullName, @Address, @ContactNumber, @LicenseNumber, @ExpirationDate, @DLCodes, @OperatorId) " +
+            var sql = "INSERT Driver (FullName, Address, ContactNumber, LicenseNumber, ExpirationDate, DLCodes, Category, OperatorId) " +
+                      "VALUES (@FullName, @Address, @ContactNumber, @LicenseNumber, @ExpirationDate, @DLCodes, @Category, @OperatorId) " +
                       "SELECT CAST(SCOPE_IDENTITY() as int);";
 
             var operatorId = await GetOperatorId(driver.OperatorName);
@@ -32,6 +32,7 @@ namespace ArangkadaAPI.Repositories
                     driver.LicenseNumber,
                     driver.ExpirationDate,
                     driver.DLCodes,
+                    driver.Category,
                     OperatorId = operatorId
                 });
             }
@@ -81,7 +82,7 @@ namespace ArangkadaAPI.Repositories
         public async Task<Driver> UpdateDriver(int id, Driver driver)
         {
             var sql = "UPDATE Driver SET [FullName] = @FullName, [ContactNumber] = @ContactNumber, " +
-                      "[LicenseNumber] = @LicenseNumber, [Address] = @Address, [ExpirationDate] = @ExpirationDate, [DLCodes] = @DLCodes " +
+                      "[LicenseNumber] = @LicenseNumber, [Address] = @Address, [ExpirationDate] = @ExpirationDate, [DLCodes] = @DLCodes, [Category] = @Category " +
                       "WHERE [Id] = @Id;";
 
             using (var con = _context.CreateConnection())
@@ -94,7 +95,8 @@ namespace ArangkadaAPI.Repositories
                     driver.LicenseNumber,
                     driver.Address,
                     driver.ExpirationDate,
-                    driver.DLCodes
+                    driver.DLCodes,
+                    driver.Category
                 });
                 {
                     return await GetById(id);
