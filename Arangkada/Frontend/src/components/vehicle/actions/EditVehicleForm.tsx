@@ -23,6 +23,7 @@ const EditVehicleForm  = () =>{
         plateNumber: "",
         bodyType: "",
         make: "",
+        distinctionLabel: "",
         rentFee: 0,
         rentStatus: false
     })
@@ -35,7 +36,7 @@ const EditVehicleForm  = () =>{
         })
     }, [para.id]);
 
-    const { crNumber, plateNumber, bodyType, make, rentFee, rentStatus } = data;
+    const { crNumber, plateNumber, bodyType, make, distinctionLabel, rentFee, rentStatus } = data;
     const updateVehicle = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 
@@ -124,6 +125,32 @@ const EditVehicleForm  = () =>{
            </TextField>
         </Grid>
         <Grid item xs={12} md={6}>
+            <TextField 
+                onChange={handleChange} 
+                value={distinctionLabel}
+                label="Distinction Label" 
+                name="distinctionLabel"
+                disabled
+                size="small" 
+                variant="outlined" 
+                fullWidth
+            >
+            </TextField>
+            </Grid>
+        <Grid item xs={12} md={6}>
+            <TextField 
+                onChange={handleChange} 
+                value={crNumber}
+                label="Certificate of Registration Number" 
+                name="crNumber"
+                disabled
+                size="small" 
+                variant="outlined" 
+                fullWidth
+            >
+            </TextField>
+        </Grid>
+        <Grid item xs={12} md={6}>
           <FormControl fullWidth size="small">
                 <InputLabel >Rent Status</InputLabel>
                     <Select
@@ -146,19 +173,6 @@ const EditVehicleForm  = () =>{
                 label="Rent Fee" 
                 name="rentFee"
                 required
-                size="small" 
-                variant="outlined" 
-                fullWidth
-            >
-            </TextField>
-        </Grid>
-        <Grid item xs={12} md={6}>
-            <TextField 
-                onChange={handleChange} 
-                value={crNumber}
-                label="Certificate of Registration Number" 
-                name="crNumber"
-                disabled
                 size="small" 
                 variant="outlined" 
                 fullWidth

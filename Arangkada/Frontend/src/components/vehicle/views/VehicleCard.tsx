@@ -37,6 +37,9 @@ const VehicleCard = ({ vehicles }: VehicleCardProps) => {
           <Typography
             variant="body1">Vehicle Id: <b>{vehicles.id}</b>
           </Typography>
+          <Typography
+            variant="body1">Distinction Label: <b>{vehicles.distinctionLabel}</b>
+            </Typography>
         </CardContent>
         <CardActions>
           <Stack direction={{ xs: "column-reverse", md: "row" }} width="100%" spacing={{ xs: 2, md: 3 }} justifyContent="end" padding={1}>
