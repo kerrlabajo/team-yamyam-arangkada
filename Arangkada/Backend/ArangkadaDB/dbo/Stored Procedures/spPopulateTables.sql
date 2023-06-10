@@ -76,13 +76,13 @@ BEGIN
 
     -- Insert sample data into Transaction table
     SET IDENTITY_INSERT [dbo].[Transaction] ON
-    INSERT INTO [dbo].[Transaction] ([Id], [Amount], [Date], [OperatorId], [DriverId])
+    INSERT INTO [dbo].[Transaction] ([Id], [Amount], [Status], [StartDate], [EndDate], [OperatorId], [DriverId])
     VALUES
-        (1, 1000.00, '2023-05-01', 1, 1),
-        (2, 1500.00, '2023-05-02', 1, 2),
-        (3, 2000.00, '2023-05-03', 3, 5),
-        (4, 1800.00, '2023-05-04', 4, 7),
-        (5, 3000.00, '2023-05-05', 4, 8),
-        (6, 1200.00, '2023-05-06', 5, 10);    
+        (1, 1000.00, 'Paid', '2023-05-01', '2023-05-02', 1, 1),
+        (2, null, 'Pending', '2023-05-02', null, 1, 2),
+        (3, null, 'Pending', '2023-05-03', null, 3, 5),
+        (4, 1800.00, 'Paid', '2023-05-04', '2023-05-05', 4, 7),
+        (5, null, 'Pending', '2023-05-05', null, 4, 8),
+        (6, 1200.00, 'Paid', '2023-05-06', '2023-05-07', 5, 10);    
    SET IDENTITY_INSERT [dbo].[Transaction] OFF
 END;
