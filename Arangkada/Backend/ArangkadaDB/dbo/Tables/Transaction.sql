@@ -2,7 +2,7 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY (1,1),
 	[Amount] FLOAT,
-	[Status] NVARCHAR(20) NOT NULL,
+	[Status] NVARCHAR(20),
 	[StartDate] NVARCHAR(20) NOT NULL,
 	[EndDate] NVARCHAR(20),
 	[OperatorId] INT NOT NULL,
