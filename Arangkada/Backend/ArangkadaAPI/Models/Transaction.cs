@@ -8,7 +8,9 @@ namespace ArangkadaAPI.Models
         public int Id { get; set; }
         public string? OperatorName { get; set; }
         public string? DriverName { get; set; }
-        public float Amount { get; set; }
-        public string? Date { get; set; }
+        public float? Amount { get; set; }
+        public string? Status { get; set; }
+        public string? StartDate { get; set; }
+        public string? EndDate { get; set; }
     }
 }

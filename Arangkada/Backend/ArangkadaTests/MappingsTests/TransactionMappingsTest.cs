@@ -36,8 +36,7 @@ namespace ArangkadaTests.MappingsTests
                 Id = 1,
                 OperatorName = "Operator 1",
                 DriverName = "John Smith",
-                Amount = 1000,
-                Date = "2023-05-01"
+                StartDate = "2023-05-01"
             };
 
             var result = _mapper.Map<TransactionDto>(transaction);
@@ -45,8 +44,7 @@ namespace ArangkadaTests.MappingsTests
             Assert.Equal(transaction.Id, result.Id);
             Assert.Equal(transaction.OperatorName, result.OperatorName);
             Assert.Equal(transaction.DriverName, result.DriverName);
-            Assert.Equal(transaction.Amount, result.Amount);
-            Assert.Equal(transaction.Date, result.Date);
+            Assert.Equal(transaction.StartDate, result.StartDate);
         }
 
         [Fact]
@@ -55,19 +53,22 @@ namespace ArangkadaTests.MappingsTests
             var transactionUpdateDto = new TransactionUpdateDto
             {
                 Amount = 1000,
-                Date = "2023-05-01"
+                Status = "Paid",
+                EndDate = "2023-05-01"
             };
 
             var expectedTransaction = new Transaction
             {
                 Amount = 1000,
-                Date = "2023-05-01"
+                Status = "Paid",
+                EndDate = "2023-05-01"
             };
             
             var result = _mapper.Map<Transaction>(transactionUpdateDto);
 
             Assert.Equal(expectedTransaction.Amount, result.Amount);
-            Assert.Equal(expectedTransaction.Date, result.Date);
+            Assert.Equal(expectedTransaction.Status, result.Status);
+            Assert.Equal(expectedTransaction.EndDate, result.EndDate);
         }
 
         [Fact]
@@ -77,23 +78,20 @@ namespace ArangkadaTests.MappingsTests
             {
                 OperatorName = "Operator 1",
                 DriverName = "John Smith",
-                Amount = 1000,
-                Date = "2023-05-01"
+                StartDate = "2023-05-01"
             };
             var expectedTransaction = new Transaction
             {
                 OperatorName = "Operator 1",
                 DriverName = "John Smith",
-                Amount = 1000,
-                Date = "2023-05-01"
+                StartDate = "2023-05-01"
             };
 
             var result = _mapper.Map<Transaction>(transactionCreationDto);
 
             Assert.Equal(expectedTransaction.OperatorName, result.OperatorName);
             Assert.Equal(expectedTransaction.DriverName, result.DriverName);
-            Assert.Equal(expectedTransaction.Amount, result.Amount);
-            Assert.Equal(expectedTransaction.Date, result.Date);
+            Assert.Equal(expectedTransaction.StartDate, result.StartDate);
         }
     }
 }

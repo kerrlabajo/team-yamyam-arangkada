@@ -78,11 +78,6 @@ namespace ArangkadaAPI.Controllers
                     return NotFound($"Vehicle with plate number {driver.VehicleAssigned} could not be found.");
                 }
 
-                if (transactionToCreate.Amount < vehicle.RentFee)
-                {
-                    return BadRequest("Amount is less than or equal to rent fee.");
-                }
-
                 //Update the previously retrieved vehicle's rent status to false
                 var updateVehicleRentStatus = await _vehicleService.UpdateRentStatus(vehicle!.Id, false);
 

@@ -44,8 +44,7 @@ namespace ArangkadaTests.ServicesTests
             {
                 OperatorName = "Operator 1",
                 DriverName = null,
-                Amount = 1000,
-                Date = "2023-05-10"
+                StartDate = "2023-05-10"
             };
 
             _fakeMapper.Setup(m => m.Map<Transaction>(transactionCreationDto))
@@ -66,8 +65,10 @@ namespace ArangkadaTests.ServicesTests
                     Id = 1,
                     OperatorName = "Operator 1",
                     DriverName = "John Smith",
-                    Amount = 1000,
-                    Date = "2023-05-10"
+                    Amount = null,
+                    Status = "Pending",
+                    StartDate = "2023-05-10",
+                    EndDate = null,
                 },
                 new Transaction
                 {
@@ -75,7 +76,9 @@ namespace ArangkadaTests.ServicesTests
                     OperatorName = "Operator 1",
                     DriverName = "John Doe",
                     Amount = 2000,
-                    Date = "2023-05-11"
+                    Status = "Completed",
+                    StartDate = "2023-05-11",
+                    EndDate = "2023-05-12"
                 }
             };
 
@@ -86,8 +89,10 @@ namespace ArangkadaTests.ServicesTests
                     Id = 1,
                     OperatorName = "Operator 1",
                     DriverName = "John Smith",
-                    Amount = 1000,
-                    Date = "2023-05-10"
+                    Amount = 0,
+                    Status = "Pending",
+                    StartDate = "2023-05-10",
+                    EndDate = null,
                 },
                 new TransactionDto
                 {
@@ -95,7 +100,9 @@ namespace ArangkadaTests.ServicesTests
                     OperatorName = "Operator 1",
                     DriverName = "John Doe",
                     Amount = 2000,
-                    Date = "2023-05-11"
+                    Status = "Completed",
+                    StartDate = "2023-05-11",
+                    EndDate = "2023-05-12"
                 }
             };
 
@@ -161,7 +168,8 @@ namespace ArangkadaTests.ServicesTests
             var transactionToUpdate = new TransactionUpdateDto
             {
                 Amount = 1000,
-                Date = "2023-05-10"
+                Status = "Completed",
+                EndDate = "2023-05-10"
             };
 
             var expectedTransactionDto = new TransactionDto
@@ -170,7 +178,8 @@ namespace ArangkadaTests.ServicesTests
                 OperatorName = "Operator 1",
                 DriverName = "John Smith",
                 Amount = 1000,
-                Date = "2023-05-10"
+                Status = "Completed",
+                EndDate = "2023-05-10"
             };
 
             _fakeMapper.Setup(m => m.Map<Transaction>(transactionToUpdate))
@@ -194,7 +203,8 @@ namespace ArangkadaTests.ServicesTests
             var transactionToUpdate = new TransactionUpdateDto
             {
                 Amount = 1000,
-                Date = "2023-05-10"
+                Status = "Completed",
+                EndDate = "2023-05-10"
             };
             _fakeMapper.Setup(m => m.Map<Transaction>(transactionToUpdate))
                        .Throws(new Exception("Test exception"));

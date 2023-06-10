@@ -35,8 +35,7 @@ namespace ArangkadaTests.ControllerTests
             {
                 OperatorName = "Operator",
                 DriverName = "Driver",
-                Amount = 100,
-                Date = "2021-01-01"
+                StartDate = "2021-01-01"
             };
 
             _fakeDriverService.Setup(x => x.GetByFullName(It.IsAny<string>()))
@@ -68,8 +67,7 @@ namespace ArangkadaTests.ControllerTests
             {
                 OperatorName = "",
                 DriverName = "Driver",
-                Amount = 100,
-                Date = "2021-01-01"
+                StartDate = "2021-01-01"
             };
 
             var result = await _controller.RecordTransaction(transaction);
@@ -85,8 +83,7 @@ namespace ArangkadaTests.ControllerTests
             {
                 OperatorName = "Operator",
                 DriverName = "Driver",
-                Amount = 100,
-                Date = "2021-01-01"
+                StartDate = "2021-01-01"
             };
             _fakeDriverService.Setup(x => x.GetByFullName(It.IsAny<string>()))
                               .ReturnsAsync(new DriverDto());
@@ -180,7 +177,8 @@ namespace ArangkadaTests.ControllerTests
             var transaction = new TransactionUpdateDto
             {
                 Amount = 100,
-                Date = "2021-01-01"
+                Status = "Paid",
+                EndDate = "2021-01-01"
             };
 
             var id = It.IsAny<int>();
@@ -208,7 +206,8 @@ namespace ArangkadaTests.ControllerTests
             var transaction = new TransactionUpdateDto
             {
                 Amount = 100,
-                Date = null
+                Status = null,
+                EndDate = null
             };
 
             var id = It.IsAny<int>();
@@ -228,7 +227,8 @@ namespace ArangkadaTests.ControllerTests
             var transaction = new TransactionUpdateDto
             {
                 Amount = 100,
-                Date = "2021-01-01"
+                Status = "Paid",
+                EndDate = "2021-01-01"
             };
 
             var id = It.IsAny<int>();
@@ -247,7 +247,8 @@ namespace ArangkadaTests.ControllerTests
             var transaction = new TransactionUpdateDto
             {
                 Amount = 100,
-                Date = "2021-01-01"
+                Status = "Paid",
+                EndDate = "2021-01-01"
             };
             var id = It.IsAny<int>();
             _fakeTransactionService.Setup(x => x.GetById(It.IsAny<int>()))

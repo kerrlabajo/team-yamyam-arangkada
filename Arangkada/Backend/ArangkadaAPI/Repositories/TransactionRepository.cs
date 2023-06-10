@@ -14,8 +14,8 @@ namespace ArangkadaAPI.Repositories
 
         public async Task<int> CreateTransaction(Transaction transaction)
         {
-            var sql = "INSERT [dbo].[Transaction] (Amount, Date, OperatorId, DriverId) " +
-                     "VALUES (@Amount, @Date, @OperatorId, @DriverId) " +
+            var sql = "INSERT [dbo].[Transaction] (StartDate, OperatorId, DriverId) " +
+                     "VALUES (@StartDate, @OperatorId, @DriverId) " +
                      "SELECT CAST(SCOPE_IDENTITY() as int);";
 
             var driverId = await GetDriverId(transaction.DriverName);
@@ -26,8 +26,7 @@ namespace ArangkadaAPI.Repositories
                 return await con.ExecuteScalarAsync<int>(
                     sql, new
                     {
-                        transaction.Amount,
-                        transaction.Date,
+                        transaction.StartDate,
                         OperatorId = operatorId,
                         DriverId = driverId
                     });
@@ -65,10 +64,8 @@ namespace ArangkadaAPI.Repositories
         public async Task<Transaction> UpdateTransaction(int id, Transaction transaction)
         {
             var sql = "UPDATE [dbo].[Transaction] " +
-                      "SET Amount = @Amount, Date = @Date " +
+                      "SET Amount = @Amount, Status = @Status, EndDate = @EndDate " +
                       "WHERE Id = @Id";
-            var driverId = await GetDriverId(transaction.DriverName);
-            var operatorId = await GetOperatorId(transaction.OperatorName);
             using (var con = _context.CreateConnection())
             {
                 await con.ExecuteAsync(
@@ -76,7 +73,8 @@ namespace ArangkadaAPI.Repositories
                      {
                         Id = id,
                         transaction.Amount,
-                        transaction.Date
+                        transaction.Status,
+                        transaction.EndDate
                     });
                 return await GetById(id);
             }
