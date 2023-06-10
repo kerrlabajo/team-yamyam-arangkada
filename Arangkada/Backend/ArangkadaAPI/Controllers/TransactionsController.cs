@@ -37,8 +37,10 @@ namespace ArangkadaAPI.Controllers
         ///         "id": 11,
         ///         "operatorName": "Operator 1",
         ///         "driverName": "Daniel Williams",
-        ///         "amount": 1500,
-        ///         "date": "2023-05-10"
+        ///         "amount": 0,
+        ///         "status": "Pending",
+        ///         "startDate": "2023-05-10",
+        ///         "endDate": "N/A"
         ///     }
         ///
         /// </remarks>
@@ -101,6 +103,7 @@ namespace ArangkadaAPI.Controllers
         /// Retrieves all transactions belonging to a specific operator.
         /// </summary>
         /// <remarks>
+        /// Sample request:
         /// 
         ///     GET /api/Transactions/by/op/{2}
         ///      {
@@ -108,14 +111,18 @@ namespace ArangkadaAPI.Controllers
         ///         "operatorName": "Operator 2",
         ///         "driverName": "Michael Johnson",
         ///         "amount": 1200,
-        ///         "date": "2023-05-06"
+        ///         "status": "Paid",
+        ///         "startDate": "2023-05-06",
+        ///         "endDate": "2023-05-07"
         ///     },
         ///     {
         ///         "id": 7,
         ///         "operatorName": "Operator 2",
         ///         "driverName": "Emily Brown",
-        ///         "amount": 1300,
-        ///         "date": "2023-05-07"
+        ///         "amount": 0,
+        ///         "status": "Pending",
+        ///         "startDate": "2023-05-06",
+        ///         "endDate": "N/A"
         ///     },
         /// </remarks>
         /// <param name="operatorId">The ID of the operator.</param>
@@ -158,7 +165,9 @@ namespace ArangkadaAPI.Controllers
         ///         "operatorName": "Operator 2",
         ///         "driverName": "Michael Johnson",
         ///         "amount": 1200,
-        ///         "date": "2023-05-06"
+        ///         "status": "Paid",
+        ///         "startDate": "2023-05-06",
+        ///         "endDate": "2023-05-07"
         ///     }
         /// </remarks>
         /// <param name="id">The ID of the transaction.</param>
@@ -199,7 +208,9 @@ namespace ArangkadaAPI.Controllers
         ///         "operatorName": "Operator 2",
         ///         "driverName": "Michael Johnson",
         ///         "amount": 2000,
-        ///         "date": "2023-05-10"
+        ///         "status": "Paid",
+        ///         "startDate": "2023-05-10",
+        ///         "endDate": "2023-05-11"
         ///     }
         ///
         /// 
